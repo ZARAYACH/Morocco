@@ -592,50 +592,48 @@
 .contact .row form textarea {
   height: 15rem;
   resize: none;
-  width: 100%;
+    width: 100%;
 }
 
 .brand-container {
-  text-align: center;
+    text-align: center;
 }
 .footer {
-  width: 100%;
-}
-.footer {
-  background: #333;
-}
-
-.footer .box-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+    width: 100%;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-.footer .box-container .box {
-  padding: 1rem 0rem 1rem 4rem;
-  flex: 1 1 20rem;
+.footer .box {
+    
+    padding: 1rem 0rem 1rem 4rem;
+    flex: 1 1 20rem;
 }
 
-.footer .box-container .box h3 {
-  font-size: 2rem;
-  padding: 0.7rem 0;
-  color: #fff;
+.footer .box h3 {
+    font-size: 2rem;
+    padding: 0.7rem 0;
+    color: #fff;
 }
 
-.footer .box-container .box p {
+.footer  .box p {
   font-size: 1.1rem;
   padding: 0.7rem 0;
   color: #eee;
 }
 
-.footer .box-container .box a {
+.footer .box a {
   display: block;
   font-size: 1rem;
   padding: 0.7rem 0;
   color: #eee;
+  text-decoration: none;
 }
 
-.footer .box-container .box a:hover {
+.footer  .box a:hover {
   color: var(--orange);
   text-decoration: underline;
 }
@@ -652,7 +650,9 @@
 .footer .credit span {
   color: var(--orange);
 }
-
+.credit img{
+    width: 20%;
+}
 /* footer{
     z-index:2 ;
     background: url(../IMG/Morocco-Flag-15.jpg) no-repeat center/cover ;
