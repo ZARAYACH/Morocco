@@ -592,34 +592,33 @@
 .contact .row form textarea {
   height: 15rem;
   resize: none;
-    width: 100%;
+  width: 100%;
 }
 
 .brand-container {
-    text-align: center;
+  text-align: center;
 }
 .footer {
-    width: 100%;
-    background: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  width: 100%;
+  background: #333;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
 }
 
 .footer .box {
-    
-    padding: 1rem 0rem 1rem 4rem;
-    flex: 1 1 20rem;
+  padding: 1rem 0rem 1rem 4rem;
+  flex: 1 1 20rem;
 }
 
 .footer .box h3 {
-    font-size: 2rem;
-    padding: 0.7rem 0;
-    color: #fff;
+  font-size: 2rem;
+  padding: 0.7rem 0;
+  color: var(--orange);
 }
 
-.footer  .box p {
+.footer .box p {
   font-size: 1.1rem;
   padding: 0.7rem 0;
   color: #eee;
@@ -633,7 +632,7 @@
   text-decoration: none;
 }
 
-.footer  .box a:hover {
+.footer .box a:hover {
   color: var(--orange);
   text-decoration: underline;
 }
@@ -642,16 +641,18 @@
   text-align: center;
   padding: 2rem 1rem;
   margin-top: 1rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: normal;
   color: #fff;
-  border-top: 0.1rem solid rgba(255, 255, 255, 0.2);
+  border-bottom: 0.1rem solid rgba(255, 255, 255, 0.2);
 }
 .footer .credit span {
   color: var(--orange);
 }
-.credit img{
-    width: 20%;
+.credit img {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 20%;
 }
 /* footer{
     z-index:2 ;
@@ -764,16 +765,17 @@
     background: #222;
   }
   .book {
-    top: 100vh;
   }
   .packages {
-    top: 215vh;
   }
 }
 
 @media only screen and (max-width: 450px) {
   html {
     font-size: 50%;
+  }
+  .place_holder {
+    height: 105vh;
   }
   .showcase {
     padding: 6rem;
@@ -793,7 +795,6 @@
     padding: 0 0 2.2rem 0;
   }
   .heading span {
-    top: 100vh;
     font-size: 2rem;
     padding: 0.2rem 0.3em;
   }
@@ -808,26 +809,31 @@
     margin-bottom: 2rem;
   }
   .packages {
-    height: 450vh;
   }
   .services {
-    top: 660vh;
-    height: 200vh;
   }
   .gallery {
-    top: 860vh;
-    height: 370vh;
   }
   .review {
-    top: 1230vh;
-    height: 250vh;
   }
   .contact {
-    top: 1480vh;
-    height: 140vh;
   }
   .footer {
-    top: 1620vh;
-    height: 139vh;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer .box a {
+    font-size: 1.6rem;
+  }
+  .footer .box {
+    flex: 0;
+    padding: 0;
+  }
+  .footer .box p {
+    font-size: 1.6rem;
+  }
+  .footer .credit img {
+    width: 45%;
+    margin-left: 1rem;
   }
 }
