@@ -688,8 +688,12 @@
 } */
 /* media queries  */
 @media (min-width: 1600px) {
+  
   html {
     font-size: 100%;
+  }
+  .place_holder{
+    height: 105vh;
   }
   .text {
     width: 50%;
