@@ -1,12 +1,11 @@
 <?php
 
-use function PHPSTORM_META\type;
 
 require_once '../classes/connection.cls.php';
 
-function EmptyInput($username,$firstname,$lastname,$email,$pwd,$pwd_repeat){
+function EmptyInput($username,$email,$pwd,$pwd_repeat){
     $result = false;
-    if(empty($username) || empty($firstname)|| empty($lastname) || empty($email)|| empty($pwd) || empty($pwd_repeat)){
+    if(empty($username) || empty($email)|| empty($pwd) || empty($pwd_repeat)){
         $result = true;
     }
     return $result; 
@@ -66,13 +65,13 @@ function ValidateLastName($lastname){
     return $result;
 }
 
-function identifiedUser($username,$pwd){
+function identifiedUser($email,$pwd){
     $result = false;
-    $sql = "select id,username from users where username = '$username'";
+    $sql = "select id,email from users where email = '$email'";
     $return = connection::selectionFromDb($sql);
     if($return->rowCount() != 0){
         while($row = $return->fetch()){
-            if($username === $row[1]){
+            if($email == $row[1]){
                 $id = $row[0];
                 $back = checkThePwd($pwd,$id);
                 if($back == true){     

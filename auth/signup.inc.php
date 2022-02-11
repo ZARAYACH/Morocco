@@ -2,57 +2,56 @@
 if (isset($_POST['username']))
 {
     $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
-    $firstname = filter_var( $_POST['First-name'], FILTER_SANITIZE_STRING);
-    $lastname =filter_var($_POST['Last-name'], FILTER_SANITIZE_STRING); 
     $email =filter_var( $_POST['email'], FILTER_SANITIZE_STRING);
-    $pwd = $_POST['password'] ;
-    $pwd_repeat =$_POST['password-repeat']; 
+    $pwd =filter_var($_POST['password'],FILTER_SANITIZE_STRING ) ;
+    $pwd_repeat =filter_var($_POST['password-repeat'],FILTER_SANITIZE_STRING ); 
 }
 else
 {
-    header ("location:..\pages\signup.php?error=wrongway");
+    header ("location:..\sign-up.php?error=wrongway");
     exit();
 }
 require_once '../auth/functions.inc.php';
 require_once '../classes/user.cls.php';
 
-if(EmptyInput($username,$firstname,$lastname,$email,$pwd,$pwd_repeat)===true)
+if(EmptyInput($username,$email,$pwd,$pwd_repeat)===true)
 {
-    header ("location:..\pages\signup.php?error=imptyinput");
+    header ("location:..\sign-up.php?error=imptyinput");
     exit();
 }
 // we will validate the email later
 if(ValidateEmail($email)===false)
 {
-    header ("location:..\pages\signup.php?error=Wrongemail");
+    header ("location:..\sign-up.php?error=Wrongemail");
     exit();
 }
 
 if(ValidateExstingEmail($email)===false)
 {
-    header ("location:..\pages\signup.php?error=emailExists");
+    header ("location:..\sign-up.php?error=emailExists");
     exit();
 }
 
 if(ValidatePwd($pwd,$pwd_repeat)===false)
 {
-    header ("location:..\pages\signup.php?error=Unmatchedpassword");
+    header ("location:..\sign-up.php?error=Unmatchedpassword");
     exit();
 
 }
 if(ValidateUserName($username)===false)
 {
-    header ("location:..\pages\signup.php?error=userexists");
+    header ("location:..\sign-up.php?error=userexists");
     exit();
 }
-
+$firstname = null;
+$lastname = null;
 $user = new user($id,$username,$firstname,$lastname,$email,$pwd,$admin);
 if($user->addToDb($user->getUsername(),$user->getFirstName(),$user->getLastName(),$user->getEmail(),$user->getPwd(),$user->getadmin())){
 
-    header ("location:..\pages\signup.php?indice=signupWithSucces");
+    header ("location:..\sign-up.php?indice=signupWithSucces");
     exit();
 }else{
-    header ("location:..\pages\signup.php?error=someThingWentWrong");
+    header ("location:..\sign-up.php?error=someThingWentWrong");
     exit();
 }
 

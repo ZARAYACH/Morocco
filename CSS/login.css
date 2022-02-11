@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+:root {
+    --orange: #ffa500;
+    --gray : rgb(240 244 243);
+  }
+html{
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgb(240 244 243);
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    list-style: none;
+}
+.container{
+    width: 70%;
+    height: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.left{
+    width: 35%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--orange);
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+  
+}
+.title_left,.desc,.button{
+    width: 80%;
+    text-align: center;
+}
+.title_left{
+    font-size: 2rem;
+    color:white;
+    font-weight: 600;
+    margin-bottom: 3rem;
+
+}
+.desc{
+    color: white;
+    margin-bottom: 4rem;
+}
+.button a{
+    color: white;
+    text-decoration: none;
+    padding: .7rem 4rem;
+    border: 1px solid white;
+    border-radius: 1rem;
+    transition: .3s;
+    
+}
+.button a:hover{
+    color: var(--orange);
+    border: 1px solid var(--orange);
+    background-color: white;
+    font-weight: 600;
+
+}
+
+.right{
+    width:65%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+}
+.title{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--orange);
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+}
+.social{
+    width: 100%;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+.social i {
+    padding: .2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    height: 1.5rem;
+    width: 1.5rem;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid rgba(0, 0, 0,0.2);
+    margin-right: 1.2rem;
+}
+.comment{
+    font-size: .8rem;
+    color: gray;
+    margin-bottom: 2rem;
+}
+.form,form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input input{
+    width: 85%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-radius: inherit;
+}
+.input{
+    margin-bottom: 1rem ;
+    width: 60%;
+    height: 2.7rem;
+    border-radius: .5rem;
+    background-color: var(--gray) ;
+    border: none;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.input i {
+    width: 15%;
+    font-size: 1.3rem;
+    text-align: center;
+    color: rgba(0, 0, 0,0.2);
+
+}
+.form form input[name = 'submit']{
+    padding: .5rem 3rem;
+    font-size: 1rem;
+    border-radius: 1rem;
+    background-color: var(--orange);
+    border: 1px solid var(--orange);
+    color: white;
+    margin-top: 2rem;
+    cursor: pointer;
+    transition: .3s;
+}
+.form form input[name = 'submit']:hover{
+    background-color: white;
+    border: 1px solid var(--orange);
+    color: var(--orange);
+
+}

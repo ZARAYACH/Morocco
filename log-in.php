@@ -4,44 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS\signup.css">
+    <link rel="stylesheet" href="CSS\login.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://kit.fontawesome.com/8b4d616e93.js" crossorigin="anonymous"></script>
-          <title>sign up</title>
+          <title>log in</title>
 </head>
 <body>
     <div class="container">
-        <div class="left">
-            <div class="title_left">
-                Welcome Back !
-            </div>
-            <div class="desc">
-                to keep connected with us please login with your personal info 
-            </div>
-            <div class="button">
-            <a href="./log-in.php">Log In</a>
-        </div>
-        </div>
         
         <div class="right">
             <div class="title">
-                Create account
-            </div>
+                Log in To enjoy
+        </div>
             <div class="social">
                 <div class="logo"><i class="fa fa-facebook" aria-hidden="true"></i></div>
                 <div class="logo"><i class="fa fa-instagram" aria-hidden="true"></i></div>
                 <div class="logo"><i class="fa fa-twitter" aria-hidden="true"></i></div>
             </div>
-            <div class="comment">sign up now and live the full experience</div>
+            <div class="comment">log in now and explore Morocco With Us </div>
             
             <div class="form">
-                <form action="./auth/signup.inc.php" method="post">
-                   <div class="input">
-                   <i class="material-icons">person_outline</i>
-                   <input type="text" name="username" placeholder="UserName">
-                </div>
+                <form action="./auth/login.inc.php" method="post">
                 <div class="input">
-
                 <i class="material-icons">mail_outline</i>
                <input type="text" name="email" placeholder="Email">
                 </div>
@@ -49,14 +33,22 @@
                    <i class="material-icons">lock_outline</i>
                    <input type="password" name="password" placeholder="password">
                 </div>
-                <div class="input">
-                <i class="material-icons">lock_outline</i>
-                   <input type="password" name="password-repeat" placeholder="repeat password">
-                </div>
-                <input type="submit" name="submit" value="sign up">
+                <input type="submit" name="submit" value="Log In">
                 </form>
             </div>
         </div>
+        <div class="left">
+            <div class="title_left">
+                Hello, Friend!
+            </div>
+            <div class="desc">
+                Entre your personel details and start journey with us!
+            </div>
+            <div class="button">
+            <a href="./sign-up.php">Sign Up</a>
+        </div>
+        </div>
+    
     </div>
 
 <script src=".\JS\jquery-3.1.1.min.js" ></script>
