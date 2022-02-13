@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-setcookie('logined',"True",time()-3600,'/');
+setcookie("logined",true, time() - (86400 * 30), "/"); 
 session_unset();
 session_destroy();
 
-header("location:../index.php");
+header("location:../index.html");

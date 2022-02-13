@@ -27,6 +27,7 @@ if(identifiedUser($email,$pwd)==false){
          if(!$row[6]){
             $user = new user($row[0],$row[1],$row[2],$row[3],$row[4],$row[5],$row[6]);
             session_start();
+            setcookie("logined",true, time() + (86400 * 30), "/"); 
             $_SESSION['user'] = serialize($user);
             header ("location:../user-home.php?ok=loginsucced");
             exit();

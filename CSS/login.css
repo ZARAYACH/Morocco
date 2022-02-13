@@ -15,10 +15,15 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: rgb(240 244 243);
+    background-color: white;
+    background-image:url("../IMG/landing-background-removebg-preview.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     align-items: center;
     font-family: "Poppins", sans-serif;
     list-style: none;
+
 }
 .container{
     width: 70%;

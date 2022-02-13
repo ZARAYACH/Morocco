@@ -24,25 +24,13 @@ var swiper = new Swiper(".review-slider", {
     },
 });
 
-var swiper = new Swiper(".brand-slider", {
-    spaceBetween: 20,
-    loop:true,
-    autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-    },
-    breakpoints: {
-        450: {
-          slidesPerView: 2,
-        },
-        768: {
-          slidesPerView: 3,
-        },
-        991: {
-          slidesPerView: 4,
-        },
-        1200: {
-          slidesPerView: 5,
-        },
-      },
-});
+book = document.querySelectorAll("#booking");
+for (let i = 0; i < book.length; i++) {
+  const booked = book[i];
+  booked.addEventListener('click',function(e){
+      tripId = e.currentTarget.getAttribute("tripId");
+      window.location = `auth/logined.inc.php?trip=${tripId}`;
+      
+  })
+  
+}

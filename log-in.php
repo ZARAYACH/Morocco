@@ -1,3 +1,12 @@
+<?php
+if(isset($_GET['trip'])){
+    $tripId = $_GET['trip'];
+    $action = "./auth/login.inc.php?trip=$tripId";
+}else{
+    $action = "./auth/login.inc.php";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +33,7 @@
             <div class="comment">log in now and explore Morocco With Us </div>
             
             <div class="form">
-                <form action="./auth/login.inc.php" method="post">
+                <form action='<?php echo($action)?>' method="post">
                 <div class="input">
                 <i class="material-icons">mail_outline</i>
                <input type="text" name="email" placeholder="Email">

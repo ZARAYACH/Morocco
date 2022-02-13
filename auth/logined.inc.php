@@ -1,0 +1,31 @@
+<?php
+session_start();
+if(isset($_COOKIE['logined'])){
+    if($_COOKIE['logined']){
+        if(isset($_SESSION['user'])){
+            if($_GET["trip"]){
+                $tripId = $_GET["trip"];
+                header("location:../chekout.php?trip=$tripId");
+                exit();
+            }else{
+                header("location:../index.html?trip=false");
+                exit();
+
+            }
+        }else{
+            header("location:../log-in.php?logined=unlogined");
+                exit();
+        }
+    }else{
+        header("location:../log-in.php?logined=unlogined");
+                exit();
+    }
+}else{
+    if(isset($_GET['trip'])){
+        $tripId=$_GET['trip'];
+        header("location:../log-in.php?logined=unlogined&trip=$tripId");
+        exit();
+    }
+    header("location:../log-in.php?logined=unlogined");
+    exit();
+}
