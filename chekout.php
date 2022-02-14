@@ -24,9 +24,10 @@ if(isset($_COOKIE['logined'])){
     <div class="container">
         <div class="left">
             <div class="back">
-                    <a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i>
-                    </a>
-                   <p>Continu exploring</p> 
+                    <div class="click">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    <p>Continu exploring</p> 
+                    </div>
                 </div>
             <div class="head" > 
                 <div class="title">
@@ -95,32 +96,37 @@ if(isset($_COOKIE['logined'])){
                     <label for="card-number">Card Number</label>
                     <input id="card-number" type="text" inputmode="numeric" placeholder="1111 2222 3333 4444">
                     <div class="para">
-                    <label for="experation-date">Experation Date</label>
-                    <div class="exp-wrapper">
-                            <input autocomplete="off" class="exp" id="month" maxlength="2" pattern="[0-9]*" inputmode="numerical" placeholder="MM" type="text" data-pattern-validate />
-                            <input autocomplete="off" class="exp" id="year" maxlength="2" pattern="[0-9]*" inputmode="numerical" placeholder="YY" type="text" data-pattern-validate />
-                    </div>
-                    <label for="cvv">cvv</label>
-                    <input id="cvv" maxlength="3" inputmode="numeric" type="text" placeholder="123" >
+                        <div class="para_1">
+                        <label for="experation-date">Experation Date</label>
+                        <div class="exp-wrapper">
+                                <input autocomplete="off" class="exp" id="month" maxlength="2" pattern="[0-9]*" inputmode="numerical" placeholder="MM" type="text" data-pattern-validate />
+                                <input autocomplete="off" class="exp" id="year" maxlength="2" pattern="[0-9]*" inputmode="numerical" placeholder="YY" type="text" data-pattern-validate />
+                        </div>
+                        </div>
+                        <div class="para_2">
+                        <label for="cvv">cvv</label>
+                            <input id="cvv" maxlength="3" inputmode="numeric" type="text" pattern="[0-9]{3}" placeholder="123" >
+                        </div>
                     </div>
                 </div>
                 <div class="summary">
-                    <div class="subTotal">
-                        <p>Sub Total :</p>
+                    <div class="extra">
+                        <p>Sub Total </p>
                         <span>TOTAL</span>
                     </div>
                     <div class="extra">
-                        <p>Extra charge :</p>
+                        <p>Extra charge</p>
                         <span>TOTAL</span>
                     </div>
-                    <div class="Total">
-                        <p>Total :</p>
+                    <div class="extra">
+                        <p>Total </p>
                         <span id="total" >TOTAL</span>
                     </div>
                 </div>
-                <div class="validate"><a href="" id="chekout-btn"><span id="total">total</span>
-                <span>chekout</span>
-                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                <div class="validate">
+                    <span id="total">$total</span>
+                <span id="bla">chekout<i class="fa fa-arrow-right" aria-hidden="true"></i> </span>
+                
             </a>
         </div>
             </div>

@@ -1,4 +1,21 @@
 
+let plus = document.querySelector("#plus");
+plus.addEventListener('click',function(){
+  let qun = document.querySelector(".person").innerHTML;
+  qun = qun/1
+  qun +=1
+  document.querySelector(".person").innerHTML = qun;  
+}) 
+let minus = document.querySelector("#minus");
+minus.addEventListener('click',function(){
+  let qun = document.querySelector(".person").innerHTML;
+  qun = qun/1
+  if(qun!=1){
+    qun -=1
+    document.querySelector(".person").innerHTML = qun;  
+  }
+ 
+}) 
 
 
 
