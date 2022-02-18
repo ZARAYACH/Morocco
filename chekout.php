@@ -84,7 +84,7 @@ if(isset($_SESSION['user'])){
                     <label for="holder-name">card holder name</label>
                     <input id="holder-name" type="text" placeholder="Tom Hanks">
                     <label for="card-number">Card Number</label>
-                    <input id="card-number" type="text" inputmode="numeric" maxlength="24" placeholder="1111 2222 3333 4444">
+                    <input id="card-number" type="text" inputmode="numeric" maxlength="16" placeholder="1111 2222 3333 4444">
                     <div class="para">
                         <div class="para_1">
                         <label for="experation-date">Experation Date</label>
@@ -102,7 +102,6 @@ if(isset($_SESSION['user'])){
                 <div class="summary">
                     <div class="extra">
                         <p>Sub Total </p>
-<<<<<<< HEAD
                         <span id="subTotal"></span>
                     </div>
                     <div class="extra">
@@ -112,17 +111,6 @@ if(isset($_SESSION['user'])){
                     <div class="extra">
                         <p>Total </p>
                         <span id="total" ></span>
-=======
-                        <span>TOTAL</span>
-                    </div>
-                    <div class="extra">
-                        <p>Extra charge</p>
-                        <span>TOTAL</span>
-                    </div>
-                    <div class="extra">
-                        <p>Total </p>
-                        <span id="total" >TOTAL</span>
->>>>>>> beeb666646453e6a330bc16fd9ab2e167c4ab8eb
                     </div>
                 </div>
                 <div class="validate">

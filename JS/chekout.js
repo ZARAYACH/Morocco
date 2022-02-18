@@ -1,5 +1,3 @@
-
-<<<<<<< HEAD
 let plus = document.querySelectorAll(".plus");
 plus.forEach(function(el){
   el.addEventListener('click', function(e){
@@ -13,25 +11,6 @@ plus.forEach(function(el){
   document.querySelector(`[data-id-person='${nplus}']`).innerHTML = qun; 
   document.querySelector(`[data-id-prix='${nplus}']`).innerText = prix; 
   updateTotals();
-=======
-let plus = document.querySelector("#plus");
-plus.addEventListener('click',function(){
-  let qun = document.querySelector(".person").innerHTML;
-  qun = qun/1
-  qun +=1
-  document.querySelector(".person").innerHTML = qun;  
-}) 
-let minus = document.querySelector("#minus");
-minus.addEventListener('click',function(){
-  let qun = document.querySelector(".person").innerHTML;
-  qun = qun/1
-  if(qun!=1){
-    qun -=1
-    document.querySelector(".person").innerHTML = qun;  
-  }
- 
-}) 
->>>>>>> beeb666646453e6a330bc16fd9ab2e167c4ab8eb
 
     })
 })
@@ -115,11 +94,13 @@ btnValidate.addEventListener('click',function(){
   let month = document.querySelector("#month").value;
   let year = document.querySelector("#year").value;
   let cvv = document.querySelector("#cvv").value;
+  let qte = document.querySelectorAll(".person");
   let toBebooked = document.querySelectorAll(".card");
   let formData = new FormData();  
  for (let i = 0; i < toBebooked.length; i++) {
-   formData.append('tripId[]',toBebooked[i].getAttribute("trip")); 
+  formData.append('tripId[]',[toBebooked[i].getAttribute("trip"),qte[i].innerHTML]); 
  }
+
  formData.append("userId",userId)
  formData.append("holderName",holderName);
  formData.append("cardNumber",cardNumber);
@@ -134,11 +115,12 @@ btnValidate.addEventListener('click',function(){
         data:formData,
         contentType: false,
         processData: false
-       }).done(function(res){
-          if(res){      
-            console.log(res)
-             
-           }
+       }).done(function(res){    
+        if(res){
+          window.location = "./purchaseDone.php?ok=purchaseWithSucecc";
+        }else{
+          window.location = "./index.php";
+        }
          
      })
 })

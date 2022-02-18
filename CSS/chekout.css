@@ -37,11 +37,7 @@ body{
 .container{
     background-color: white;
     width: 93%;
-<<<<<<< HEAD
     height: 109vh;
-=======
-    height: 40rem;
->>>>>>> beeb666646453e6a330bc16fd9ab2e167c4ab8eb
     border-radius: 2rem;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     display: flex;
@@ -204,8 +200,11 @@ body{
     align-items: center;
     MARGIN-TOP: 0.2rem;
     opacity: .4;
-    cursor: pointer;
+  
     transition: .3s;
+}
+.plus,.minus{
+    cursor: pointer;
 }
 #minus:hover{
     opacity: 1;
