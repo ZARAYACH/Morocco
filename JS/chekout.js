@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 let plus = document.querySelectorAll(".plus");
 plus.forEach(function(el){
   el.addEventListener('click', function(e){
@@ -12,6 +13,25 @@ plus.forEach(function(el){
   document.querySelector(`[data-id-person='${nplus}']`).innerHTML = qun; 
   document.querySelector(`[data-id-prix='${nplus}']`).innerText = prix; 
   updateTotals();
+=======
+let plus = document.querySelector("#plus");
+plus.addEventListener('click',function(){
+  let qun = document.querySelector(".person").innerHTML;
+  qun = qun/1
+  qun +=1
+  document.querySelector(".person").innerHTML = qun;  
+}) 
+let minus = document.querySelector("#minus");
+minus.addEventListener('click',function(){
+  let qun = document.querySelector(".person").innerHTML;
+  qun = qun/1
+  if(qun!=1){
+    qun -=1
+    document.querySelector(".person").innerHTML = qun;  
+  }
+ 
+}) 
+>>>>>>> beeb666646453e6a330bc16fd9ab2e167c4ab8eb
 
     })
 })

@@ -102,6 +102,7 @@ if(isset($_SESSION['user'])){
                 <div class="summary">
                     <div class="extra">
                         <p>Sub Total </p>
+<<<<<<< HEAD
                         <span id="subTotal"></span>
                     </div>
                     <div class="extra">
@@ -111,6 +112,17 @@ if(isset($_SESSION['user'])){
                     <div class="extra">
                         <p>Total </p>
                         <span id="total" ></span>
+=======
+                        <span>TOTAL</span>
+                    </div>
+                    <div class="extra">
+                        <p>Extra charge</p>
+                        <span>TOTAL</span>
+                    </div>
+                    <div class="extra">
+                        <p>Total </p>
+                        <span id="total" >TOTAL</span>
+>>>>>>> beeb666646453e6a330bc16fd9ab2e167c4ab8eb
                     </div>
                 </div>
                 <div class="validate">
