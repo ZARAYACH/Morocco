@@ -1,3 +1,9 @@
+let backBtn  = document.querySelector(".click");
+backBtn.addEventListener('click',()=>{
+  window.location = "./index.php";
+})
+
+
 let plus = document.querySelectorAll(".plus");
 plus.forEach(function(el){
   el.addEventListener('click', function(e){
