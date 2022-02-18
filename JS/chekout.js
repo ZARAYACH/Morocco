@@ -94,12 +94,14 @@ btnValidate.addEventListener('click',function(){
   let month = document.querySelector("#month").value;
   let year = document.querySelector("#year").value;
   let cvv = document.querySelector("#cvv").value;
+  let prixForOne = document.querySelector(".prix");
   let qte = document.querySelectorAll(".person");
   let toBebooked = document.querySelectorAll(".card");
   let formData = new FormData();  
  for (let i = 0; i < toBebooked.length; i++) {
-  formData.append('tripId[]',[toBebooked[i].getAttribute("trip"),qte[i].innerHTML]); 
+  formData.append('tripId[]',[toBebooked[i].getAttribute("trip"),qte[i].innerHTML,prixForOne.getAttribute("price_one")]); 
  }
+console.log(...formData);
 
  formData.append("userId",userId)
  formData.append("holderName",holderName);
@@ -116,10 +118,11 @@ btnValidate.addEventListener('click',function(){
         contentType: false,
         processData: false
        }).done(function(res){    
-        if(res){
+        if(res=="done"){
           window.location = "./purchaseDone.php?ok=purchaseWithSucecc";
         }else{
-          window.location = "./index.php";
+            console.log(res);
+          // window.location = "./index.php";
         }
          
      })

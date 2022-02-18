@@ -16,19 +16,14 @@ if(isset($_POST['what'])){
         $cvv = $_POST['cvv'];
         if(!isset($_POST["tripId"])){
             echo("impty cards");
-            exit();
         }else if(empty($userId) || empty($holderName) || empty($cardNumber) || empty($month) || empty($year) || empty($cvv) ){
             echo("impty input");
-            exit();
         }else if(strlen($cardNumber)!=16 || !is_numeric($cardNumber)){
             echo("card number incorect");
-            exit();
         }else if(strlen($cvv)!=3 || !is_numeric($cvv)){
             echo('incorect cvv');
-            exit();
         }else if($month<0 && $month>13 || $year<date('y') || $year>date('y')+15){
-            echo('incorrect expiration date');
-            exit();     
+            echo('incorrect expiration date');     
         }else{
             $tripIdsAndQte = $_POST["tripId"] ;
             $sql = "select * from cards where card_number = '$cardNumber' ";
@@ -48,14 +43,18 @@ if(isset($_POST['what'])){
                 $exploded = explode(',',$tripIdsAndQte[$i]);
                 $tripId = $exploded[0];
                 $qte = $exploded[1];
-                $sql = "insert INTO booked(id_trip,id_user,qte) VALUES ((select trip_id from cart where id = '$tripId'),$userId,$qte)";
+                $prixForOne = $exploded[2];
+                $total = $prixForOne * $qte+10;
+                $sql = "insert INTO booked(id_trip,id_user,qte,prixForOne,tatalPaid) VALUES ((select trip_id from cart where id = '$tripId'),'$userId','$qte','$prixForOne','$total')";
                 $return = connection::actionOnDB($sql);
                 if($return){
-                    $result = true;
+                    $result = "done";
                  $sql = "delete from cart where id = '$tripId'";
                  $return = connection::actionOnDB($sql);
                  if($return){
-                     $result = true;
+                     $result = "done";
+                 }else{
+                     $result = "wrong";
                  }
                 }
              }
