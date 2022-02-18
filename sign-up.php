@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS\signup.css">
+    <link rel="stylesheet" href="CSS/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script src="https://kit.fontawesome.com/8b4d616e93.js" crossorigin="anonymous"></script>
+  
           <title>sign up</title>
 </head>
 <body>
@@ -28,9 +29,9 @@
                 Create account
             </div>
             <div class="social">
-                <div class="logo"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-                <div class="logo"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                <div class="logo"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+            <div class="logo"><i class="fa-brands fa-facebook-f"></i></div>
+                <div class="logo"><i class="fa-brands fa-instagram"></i></div>
+                <div class="logo"><i class="fa-brands fa-twitter"></i></div>
             </div>
             <div class="comment">sign up now and live the full experience</div>
             
@@ -58,7 +59,6 @@
             </div>
         </div>
     </div>
-
 <script src=".\JS\jquery-3.1.1.min.js" ></script>
 </body>
 

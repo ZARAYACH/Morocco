@@ -5,4 +5,4 @@ setcookie("logined",true, time() - (86400 * 30), "/");
 session_unset();
 session_destroy();
 
-header("location:../index.html");
+header("location:../index.php");

@@ -5,7 +5,7 @@
   }
 
   ::-webkit-scrollbar{
-    width: 0px;
+    width: 10px;
   }
 
   ::-webkit-scrollbar-track{
@@ -37,12 +37,17 @@ body{
 .container{
     background-color: white;
     width: 93%;
-    max-height: 93vh;
+    height: 109vh;
     border-radius: 2rem;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
+    background-image:url("../IMG/landing-background-removebg-preview.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
 }
 .left{
@@ -67,6 +72,13 @@ body{
     margin-top:1.5rem ;
     border-bottom: 1px solid var(--gray);
 
+}
+.click{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    transition: .3s;
 }
 .back a{
     width: 2rem;
@@ -222,14 +234,14 @@ i{
     background-color: var(--orange);
     border-radius: 2rem ;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 .right_head{
     display: flex;
-    width: 77%;
-    margin-top: 2rem;
+    width: 85%;
+    margin-top: 1.2rem;
     height: 4rem;
     justify-content: space-between;
     align-items: center;
@@ -256,13 +268,15 @@ i{
     justify-content: flex-start;
     margin-top: .5rem;
     flex-direction: column;
-    width: 77%;
+    width: 85%;
+    cursor: pointer;
 }
 .cards{
     display: flex;
     justify-content:flex-start;
     align-items: center;
     color: white;
+    
 }
 .ways p{
     color: white;
@@ -271,12 +285,12 @@ i{
     font-size: .7rem;
 }
 #pay{
-    width: 5rem;
-    height: 3.5rem;
+    width: 4.5rem;
+    height: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid white;
+    border: 1px solid rgba(255, 255, 255, 0.39);
     border-radius: .2rem;
     opacity: .7;
     transition: .3S;
@@ -284,6 +298,7 @@ i{
 }
 #pay:hover{
     opacity: 1;
+    border: 1px solid white;
     
 }
 #pay .fa-brands {
@@ -294,13 +309,13 @@ i{
 #selected{
     width: 5%;
     margin-bottom: 45%;
+    margin-right: 1%;
     visibility: hidden;
     color: white;
 }
 #selected i{
     font-size: .9rem;
     position: relative;
-    width:
 }
 
 
@@ -309,6 +324,87 @@ visibility: visible !important;
 opacity: 1 !important;
 }
 
+.form{
+    width: 85%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 1rem;
+    BORDER-BOTTOM: 1px solid #ffffff52;
+
+}
+.form label{
+    font-size: .7rem;
+    margin-bottom: .3rem;
+}
+.form input{
+    margin-bottom: 1rem;
+    border: none;
+    outline: none;
+      width: 95%;
+    height: 2rem;
+    font-size: .7rem;
+    padding-left: 5%;
+    background-color: #ffffff8a;
+    border-radius: 0.3rem;
+    color: #303b47;
+}
+.para{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.para_1,.para_2 {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+.summary{
+    color: white;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    margin-top: .8rem;
+}
+.extra{
+    display: flex;
+    align-items: center;
+    font-size: .8rem;
+    justify-content: space-between;
+    margin-top: .5rem;
+}
+.extra p {
+    margin: 0;
+    padding: 0;
+}
+.validate{
+    width: 85%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #303b47;
+    padding: 1rem 0rem;
+    color: white;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: .3s;
+}
+.validate #total{
+    margin-left: 1.2rem;
+    font-weight: 600;
+}
+#bla{
+    font-weight: 600;
+    margin-right: 1.2rem;
+}
+.validate:hover{
+    background-color: #526577;
+}
 
 
 
@@ -330,19 +426,26 @@ opacity: 1 !important;
     position: relative;
     border: 1px solid #aaa;
     display: flex;
-    width: 300px;
+    width: 100%;
     justify-content: space-around;
-    height: 36px;
+    height: 2rem;
     line-height: 36px;
     font-size: 24px;
+    padding-left: 5%;
+    background-color: #ffffff8a;
+    border-radius: 0.3rem;
+    color: #303b47;
+    border: none;
+    outline :none;
   }
   
   .exp-wrapper:after {
     content: '/';
     position: absolute;
     left: 50%;
-    margin-left: -4px;
-    color: #aaa;
+    font-size: 1rem;
+    color: #303b47;
+    opacity: .5;
   }
   
   input.exp {
@@ -353,4 +456,5 @@ opacity: 1 !important;
     outline: none;
     appearance: none;
     font-size: 14px;
+    background-color: transparent;
   }

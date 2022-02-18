@@ -1,11 +1,128 @@
 
+let plus = document.querySelectorAll(".plus");
+plus.forEach(function(el){
+  el.addEventListener('click', function(e){
+    let nplus =  e.currentTarget.getAttribute('data-id-trip');
+    let qun = document.querySelector(`[data-id-person='${nplus}']`).innerHTML;
+    let prix =  document.querySelector(`[data-id-prix='${nplus}']`).getAttribute("price_one");
+    prix=prix/1;
+    qun = qun/1
+    qun +=1
+    prix = prix *qun;
+  document.querySelector(`[data-id-person='${nplus}']`).innerHTML = qun; 
+  document.querySelector(`[data-id-prix='${nplus}']`).innerText = prix; 
+  updateTotals();
 
+    })
+})
+let minus = document.querySelectorAll(".minus");
+minus.forEach(function(el){
+  el.addEventListener('click', function(e){
+    let nminus =  e.currentTarget.getAttribute('data-id-trip');
+    let qun = document.querySelector(`[data-id-person='${nminus}']`).innerHTML;
+    let prix =  document.querySelector(`[data-id-prix='${nminus}']`).getAttribute("price_one");
+  if(qun !=1){
+    qun = qun/1
+    prix=prix/1;
+    qun -=1
+    prix = prix *qun;
+    document.querySelector(`[data-id-person='${nminus}']`).innerHTML = qun;  
+    document.querySelector(`[data-id-prix='${nminus}']`).innerText = prix; 
+    updateTotals();
 
+  }
+  
+    })
+})
+let dele = document.querySelectorAll(".delete");
+dele.forEach((el)=>{
+  el.addEventListener('click',(e)=>{
+    let cardTrip = e.currentTarget.parentNode;
+    let tripId=e.currentTarget.parentNode.getAttribute('trip');
+    $(function(){     
+            $.ajax({
+                type: 'POST',
+                url:'auth/user-fun.inc.php',
+                data:'what='+"del"+'&tripId='+tripId
+              }).done(function (res){
+                  if(res){    
+                     cardTrip.remove();
+                     updateTotals();
+                     nbrOnCart();
+                   }
+                 
+             })
+})})})
+updateTotals();
 
+function updateTotals(){
+  let subTotal = document.querySelector("#subTotal");
+  let prix = document.querySelectorAll(".prix");
+  let subTotals = 0/1;
+  prix.forEach((el)=>{
+    ee=el.innerText/1
+    subTotals += ee;
+  })
+  subTotal.innerText = subTotals;
+  let extra = document.querySelector("#extra_charges");
+  if(subTotal.innerText!=0){
+    let m = 10;
+    extra.innerText = m;
+  }else{
+    let m = 0;
+    extra.innerText = m;
+  }
+  
 
+  let total = document.querySelectorAll("#total");
+  total.forEach((el)=>{
+    let t = subTotals/1 + extra.innerText/1 ;
+    el.innerText = '$'+t
+  })
+  
+}
+function nbrOnCart(){
+  let nbr = document.querySelector("#nbr");
+  let cards = document.querySelectorAll(".card");
+  nbr.innerText = cards.length;
+}
+nbrOnCart();
 
-
-
+let btnValidate = document.querySelector(".validate");
+btnValidate.addEventListener('click',function(){
+  let holderName = document.querySelector("#holder-name").value;
+  let cardNumber = document.querySelector("#card-number").value;
+  let month = document.querySelector("#month").value;
+  let year = document.querySelector("#year").value;
+  let cvv = document.querySelector("#cvv").value;
+  let toBebooked = document.querySelectorAll(".card");
+  let formData = new FormData();  
+ for (let i = 0; i < toBebooked.length; i++) {
+   formData.append('tripId[]',toBebooked[i].getAttribute("trip")); 
+ }
+ formData.append("userId",userId)
+ formData.append("holderName",holderName);
+ formData.append("cardNumber",cardNumber);
+ formData.append("month",month);
+ formData.append("year",year);
+ formData.append("cvv",cvv);
+ formData.append('what','booking');
+  $(function(){   
+    $.ajax({
+        type: 'POST',
+        url:'auth/user-fun.inc.php',
+        data:formData,
+        contentType: false,
+        processData: false
+       }).done(function(res){
+          if(res){      
+            console.log(res)
+             
+           }
+         
+     })
+})
+})
 
 
 
@@ -119,4 +236,3 @@ document.querySelectorAll('input[data-pattern-validate]').forEach(el => el.addEv
     return e.preventDefault();
   }
 }));
-// END CARD EXPERTION

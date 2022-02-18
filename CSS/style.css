@@ -426,7 +426,7 @@
   padding-top: 1rem;
 }
 
-.packages .box-container .box .content .price span {
+.remise{
   color: #666;
   font-size: 1.1rem;
   text-decoration: line-through;
@@ -706,7 +706,7 @@
 @media (min-width: 1600px) {
   
   html {
-    font-size: 150%;
+    font-size: 100%;
   }
   .place_holder{
     height: 105vh;

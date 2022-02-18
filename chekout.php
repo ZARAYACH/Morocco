@@ -1,12 +1,12 @@
 <?php
-if(isset($_COOKIE['logined'])){
-    if($_COOKIE['logined']){
-        // echo 'yeah';
-    }else{
-        // echo 'IT FALSE';
-    }
+require_once './classes/trips.cls.php';
+require_once './classes/user.cls.php';
+session_start();
+if(isset($_SESSION['user'])){
+    $user = unserialize($_SESSION['user']);
 }else{
-    // echo 'NO';
+    header("location:./log-in.php");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -16,22 +16,24 @@ if(isset($_COOKIE['logined'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/chekout.css">
+    <link rel="stylesheet" href="CSS/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script src="https://kit.fontawesome.com/8b4d616e93.js" crossorigin="anonymous"></script>
+
     <title>Chekout</title>
 </head>
 <body>
     <div class="container">
         <div class="left">
             <div class="back">
-                    <a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i>
-                    </a>
-                   <p>Continu exploring</p> 
+                    <div class="click">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    <p>Continu exploring</p> 
+                    </div>
                 </div>
             <div class="head" > 
                 <div class="title">
                  <h1>waiting your reservation! </h1>
-                 <span>you have <!--number from database -->1 trips in your list</span>
+                 <span>you have <span id="nbr"></span> trips in your list</span>
                 </div>      
                 <div class="sort">
                     <p>Sort By :</p>
@@ -44,20 +46,9 @@ if(isset($_COOKIE['logined'])){
                 </div>
                 
                <div class="cards_container">
-               <div class="card">
-                    <div class="img"><img src="./IMG/835a014c3ce140d01c1d2b4e4b913487.jpg" alt="" srcset=""></div>
-                    <div class="card_title">
-                        <div class="trip_title">TO marakeck</div>
-                        <div class="trip_destination">Lorem, ipsum dolor.</div>
-                    </div>
-                    <div class="Number">
-                        <div id="plus"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
-                        <div class="person">1</div>
-                        <div id="minus"><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
-                    </div>
-                    <div class="price"><span id="currency">$</span>999.99</div>
-                    <div class="delete"><i class="fa-solid fa-trash-can"></i></div>
-                </div> 
+               <?php 
+                    trips::displayCart($user->getId());
+               ?>
 
 
                 
@@ -93,40 +84,46 @@ if(isset($_COOKIE['logined'])){
                     <label for="holder-name">card holder name</label>
                     <input id="holder-name" type="text" placeholder="Tom Hanks">
                     <label for="card-number">Card Number</label>
-                    <input id="card-number" type="text" inputmode="numeric" placeholder="1111 2222 3333 4444">
+                    <input id="card-number" type="text" inputmode="numeric" maxlength="24" placeholder="1111 2222 3333 4444">
                     <div class="para">
-                    <label for="experation-date">Experation Date</label>
-                    <div class="exp-wrapper">
-                            <input autocomplete="off" class="exp" id="month" maxlength="2" pattern="[0-9]*" inputmode="numerical" placeholder="MM" type="text" data-pattern-validate />
-                            <input autocomplete="off" class="exp" id="year" maxlength="2" pattern="[0-9]*" inputmode="numerical" placeholder="YY" type="text" data-pattern-validate />
-                    </div>
-                    <label for="cvv">cvv</label>
-                    <input id="cvv" maxlength="3" inputmode="numeric" type="text" placeholder="123" >
+                        <div class="para_1">
+                        <label for="experation-date">Experation Date</label>
+                        <div class="exp-wrapper">
+                                <input autocomplete="off" class="exp" id="month" maxlength="2" pattern="[0-9]*" inputmode="numerical" placeholder="MM" type="text" data-pattern-validate />
+                                <input autocomplete="off" class="exp" id="year" maxlength="2" pattern="[0-9]*" inputmode="numerical" placeholder="YY" type="text" data-pattern-validate />
+                        </div>
+                        </div>
+                        <div class="para_2">
+                        <label for="cvv">cvv</label>
+                            <input id="cvv" maxlength="3" inputmode="numeric" type="text" pattern="[0-9]{3}" placeholder="123" >
+                        </div>
                     </div>
                 </div>
                 <div class="summary">
-                    <div class="subTotal">
-                        <p>Sub Total :</p>
-                        <span>TOTAL</span>
+                    <div class="extra">
+                        <p>Sub Total </p>
+                        <span id="subTotal"></span>
                     </div>
                     <div class="extra">
-                        <p>Extra charge :</p>
-                        <span>TOTAL</span>
+                        <p>Extra charge</p>
+                        <span id="extra_charges"></span>
                     </div>
-                    <div class="Total">
-                        <p>Total :</p>
-                        <span id="total" >TOTAL</span>
+                    <div class="extra">
+                        <p>Total </p>
+                        <span id="total" ></span>
                     </div>
                 </div>
-                <div class="validate"><a href="" id="chekout-btn"><span id="total">total</span>
-                <span>chekout</span>
-                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                <div class="validate">
+                    <span id="total">$total</span>
+                <span id="bla">chekout<i class="fa fa-arrow-right" aria-hidden="true"></i> </span>
+                
             </a>
         </div>
             </div>
         </div>
     </div>
-
+    <script src="JS\jquery-3.1.1.min.js"></script>
     <script src="JS\chekout.js"></script>
+    <script>let userId = <?php echo($user->getId()); ?></script>
 </body>
 </html>

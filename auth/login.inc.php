@@ -29,8 +29,23 @@ if(identifiedUser($email,$pwd)==false){
             session_start();
             setcookie("logined",true, time() + (86400 * 30), "/"); 
             $_SESSION['user'] = serialize($user);
-            header ("location:../user-home.php?ok=loginsucced");
-            exit();
+            if(isset($_GET['trip'])){
+                $tripId = $_GET['trip'];
+                $userId = $user->getId();
+                $sql = "insert into cart(trip_id,user_id) values ($tripId,$userId)";
+                $return = connection::actionOnDB($sql);
+                if($return){
+                    header ("location:../chekout.php?trip=$tripId");
+                    exit();
+                }else{
+                    header ("location:../user-home.php?error=somethingwentwrong");
+                    exit();
+                }
+            }else{
+                header ("location:../user-home.php?ok=loginsucced");
+                exit();
+            }
+           
         }
         // else if($row[6]){
         //     $admin = new admin($row[0],$row[1],$row[2],$row[3],$row[4],$row[5],$row[6]);
