@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 16, 2022 at 09:42 AM
+-- Generation Time: Feb 18, 2022 at 11:06 PM
 -- Server version: 8.0.27
 -- PHP Version: 7.4.26
 
@@ -32,11 +32,73 @@ CREATE TABLE IF NOT EXISTS `booked` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_trip` int NOT NULL,
   `id_user` int NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `qte` int NOT NULL,
+  `prixForOne` float NOT NULL,
+  `tatalPaid` float NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`),
   KEY `id_trip` (`id_trip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `booked`
+--
+
+INSERT INTO `booked` (`id`, `id_trip`, `id_user`, `qte`, `prixForOne`, `tatalPaid`, `date`) VALUES
+(20, 2, 1, 1, 0, 0, '2022-02-18 22:35:03'),
+(21, 2, 1, 1, 90, 100, '2022-02-18 22:41:10'),
+(22, 2, 1, 5, 90.25, 461.25, '2022-02-18 22:43:08'),
+(23, 2, 1, 12, 90.25, 1093, '2022-02-18 22:43:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cards`
+--
+
+DROP TABLE IF EXISTS `cards`;
+CREATE TABLE IF NOT EXISTS `cards` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `holder_name` varchar(50) NOT NULL,
+  `card_number` varchar(16) NOT NULL,
+  `expiration_date` varchar(11) NOT NULL,
+  `cvv` int NOT NULL,
+  `id_user` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_user` (`id_user`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `cards`
+--
+
+INSERT INTO `cards` (`id`, `holder_name`, `card_number`, `expiration_date`, `cvv`, `id_user`) VALUES
+(1, 'mohammed achbani', '1111222233334444', '12/34', 123, 1),
+(2, 'L%KJN', '1231231231234412', '02/33', 123, 1),
+(3, 'OUHUKLJDF', '1231321231231231', '12/31', 123, 1),
+(4, 'oiqdjfoizqdsj', '1231231232123123', '12/32', 123, 1),
+(5, '123123123', '1231231231231231', '12/31', 123, 1),
+(6, 'mohamedachbai', '6253142422134891', '06/32', 123, 1),
+(7, 'sjkjefdn', '3987259782879349', '02/34', 423, 1),
+(8, 'IJFSDIOQSM', '1231231223311231', '12/32', 123, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+DROP TABLE IF EXISTS `cart`;
+CREATE TABLE IF NOT EXISTS `cart` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `trip_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `trip_id` (`trip_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -65,11 +127,24 @@ CREATE TABLE IF NOT EXISTS `trips` (
   `trip_id` int NOT NULL AUTO_INCREMENT,
   `destination` varchar(50) NOT NULL,
   `description` text NOT NULL,
-  `price` int NOT NULL,
+  `price` float NOT NULL,
   `max_persone` int NOT NULL,
-  `time_depart` date NOT NULL,
+  `img` text NOT NULL,
+  `time_depart` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`trip_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `trips`
+--
+
+INSERT INTO `trips` (`trip_id`, `destination`, `description`, `price`, `max_persone`, `img`, `time_depart`) VALUES
+(1, 'marakech', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, nam!', 90.25, 200, 'IMG/marakech.jpg', '2022-02-18 09:52:40'),
+(2, 'fes', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, nam!', 90.25, 200, 'IMG/fes.jpg', '2022-02-18 09:53:43'),
+(3, 'Rabat', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, nam!', 90.25, 200, 'IMG/rabat.jpg', '2022-02-18 09:54:23'),
+(4, 'Chefchoun', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, nam!', 90.25, 200, 'IMG/chefchoun.jpg', '2022-02-18 09:55:09'),
+(5, 'Dakhla', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, nam!', 90.25, 200, 'IMG/dakhla.jpg', '2022-02-18 09:55:48'),
+(6, 'Merzouja', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, nam!', 90.25, 200, 'IMG/merzouja.jpg', '2022-02-18 09:56:30');
 
 -- --------------------------------------------------------
 
