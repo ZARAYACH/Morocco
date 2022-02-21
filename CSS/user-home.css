@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+:root {
+    --orange: #ffa500;
+    --gray : rgb(240 244 243);
+}
+body{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: white;
+    font-family: "Poppins", sans-serif;
+    list-style: none;
+}
+.nav{
+    width: 20%;
+    position: fixed;
+    left: 0px;
+    height: 100vh;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+}
+.above,.under{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;    
+ 
+}
+.above{
+    height: 77%;
+
+}
+.above ul{
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    background-color: #303b47;
+}
+.under{
+    height: 18%;
+}
+.under ul{
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    background-color: #303b47;
+}
+ul{
+    list-style: none;
+    width: 80%;
+    height: 100%;
+   
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+ ul li{
+    margin-top: 2rem;
+    padding: .7rem 0rem;
+    width: 92%;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+.active{
+    background-color: white !important;
+    color: black !important;
+}
+.active a{
+    color: black;
+}
+ ul li a{
+    color: white;
+    width: 100%;
+    font-weight: 600;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+}
+ul li a i{
+    width: 30%;
+   text-align: center;
+   
+}
+ul li a span{
+    width: 70%;
+}
+.id-card{
+    width: 30%;
+}
+.main{
+    width: 50%;
+}
