@@ -25,30 +25,40 @@ if(isset($_SESSION["user"])){
         <div class="above">
         <ul>
             <li class="click">
+                <b></b>
+                <b></b>
                 <a>
                 <i class="fa fa-house"></i>
             <span>Home</span>
                 </a>
             </li>
             <li class="click active">
+            <b></b>
+                <b></b>
                 <a>
                 <i class="fa fa-user-group"></i>
                     <span>Profile</span>
                 </a>
             </li>
             <li class="click">
+            <b></b>
+                <b></b>
                 <a>
                 <i class="fa fa-signal"></i>
                     <span>reviews</span>
                 </a>
             </li>
             <li class="click">
+            <b></b>
+                <b></b>
                 <a>
                 <i class="fa-solid fa-clipboard"></i>
                     <span>tikets</span>
                 </a>
             </li>
             <li class="click">
+            <b></b>
+                <b></b>
                 <a>
                 <i class="fa fa-gear"></i>    
                 <span>settings</span>
@@ -59,6 +69,8 @@ if(isset($_SESSION["user"])){
         <div class="under">
         <ul>
         <li class="click">
+        <b></b>
+                <b></b>
         <a >
                 <i class="fa fa-arrow-right-from-bracket"></i>    
                 <span>Log out</span>

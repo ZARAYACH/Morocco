@@ -27,11 +27,11 @@ body{
     align-items: center;
 }
 .above,.under{
-    width: 100%;
+    width: 14rem;
     display: flex;
-    align-items: center;
     justify-content: flex-start;
     flex-direction: column;    
+    margin-left: 3rem
  
 }
 .above{
@@ -39,36 +39,36 @@ body{
 
 }
 .above ul{
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
+    border-top-left-radius:.5rem;
+    border-top-right-radius: .5rem;
     background-color: #303b47;
 }
 .under{
     height: 18%;
 }
 .under ul{
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
     background-color: #303b47;
 }
 ul{
     list-style: none;
-    width: 80%;
+    width: 4rem;
     height: 100%;
-   
     margin: 0;
     padding: 0;
-    display: flex;
-    align-items: flex-end;
-    flex-direction: column;
-    justify-content: flex-start;
+    overflow-x: hidden;
+    transition: .4s ease-out;
 }
  ul li{
     margin-top: 2rem;
+    margin-left: 1rem;
     padding: .7rem 0rem;
-    width: 92%;
+    width: 100%;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
+    position: relative;
+
 }
 .active{
     background-color: white !important;
@@ -79,16 +79,51 @@ ul{
 }
  ul li a{
     color: white;
-    width: 100%;
+    width: 11rem;
     font-weight: 600;
     display: flex;
     text-decoration: none;
     align-items: center;
     justify-content: center;
 }
+ul li.active b:nth-child(1){
+    position: absolute;
+    top: -20px;
+    height: 20px;
+    width: calc(100% - 16px);
+    background-color: white;
+    
+}
+ul li.active b:nth-child(1)::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #303b47;
+    border-bottom-right-radius: 1rem;
+}
+ul li.active b:nth-child(2){
+    position: absolute;
+    bottom: -20px;
+    height: 20px;
+    width: calc(100% - 16px);
+    background-color: white;
+}
+ul li.active b:nth-child(2)::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #303b47;
+    border-top-right-radius: 1rem;
+}
 ul li a i{
     width: 30%;
-   text-align: center;
+    padding-left: .5rem;
    
 }
 ul li a span{
