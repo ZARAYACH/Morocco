@@ -89,24 +89,28 @@ if(isset($_SESSION["user"])){
       <div class="down"></div>
     </div>
 
+
+    <div class="placeholder"></div>
     <div class="id-card">
-    <div class="user-img"><img src="./IMG/download.jpg" alt=""></div>
+    <div class="user-img"><img src="./IMG/pic4.png" alt=""></div>
         <div class="user-name">
-            john Wick <span>manager</span>
+            Camerron Robins <span>Sales manager</span>
         </div>
     <div class="contact">
         <p>Contact information</p>
         <div class="contact-info">
             <label for="">Email</label>
             <div class="info">
-                <span>mohamedachbani3@gmail.com</span>
+                <span>moha3@gmail.com</span>
                 <i class="fa-solid fa-envelope"></i>
             </div>
         </div>
             <div class="contact-info">
             <label for="">Phone</label>
-            <span id="country-code">+212</span><span>639-034-619</span>
+            <div class="info">
+            <span id="phoneNbr"><span id="country-code">+212</span>  639-034-619</span>
             <i class="fa fa-phone"></i>
+            </div>
             </div>
            
         </div>
@@ -120,63 +124,63 @@ if(isset($_SESSION["user"])){
                 </select>
             </div>
             <div class="keys">
-                <div class="dot"><span></span>Planned</div>
-                <div class="dot"><span></span>Booked</div>
-                <div class="dot"><span></span>Canceled</div>
+                <div class="dot">Planned</div>
+                <div class="dot">booked</div>
+                <div class="dot">Canceled</div>
             </div>
             <div class="statistiques">
             <div class="tower">
                 <div class="chart">
-                    <span class="palanned"></span>
-                    <span class="Booked"></span>
+                    <span class="planned"></span>
+                    <span class="booked"></span>
                     <span class="Canceled"></span>
                 </div>
                 <div class="day">Sun</div>
             </div>
             <div class="tower">
                 <div class="chart">
-                <span class="palanned"></span>
-                    <span class="Booked"></span>
+                <span class="planned"></span>
+                    <span class="booked"></span>
                     <span class="Canceled"></span>
                 </div>
                 <div class="day">Mon</div>
             </div>
             <div class="tower">
                 <div class="chart">
-                <span class="palanned"></span>
-                    <span class="Booked"></span>
+                <span class="planned"></span>
+                    <span class="booked"></span>
                     <span class="Canceled"></span>
                 </div>
                 <div class="day">Tue</div>
             </div>
             <div class="tower">
                 <div class="chart">
-                <span class="palanned"></span>
-                    <span class="Booked"></span>
+                <span class="planned"></span>
+                    <span class="booked"></span>
                     <span class="Canceled"></span>
                 </div>
                 <div class="day">Wed</div>
             </div>
             <div class="tower">
                 <div class="chart">
-                <span class="palanned"></span>
-                    <span class="Booked"></span>
+                <span class="planned"></span>
+                    <span class="booked"></span>
                     <span class="Canceled"></span>
                 </div>
                 <div class="day">Thu</div>
             </div>
             <div class="tower">
                 <div class="chart">
-                <span class="palanned"></span>
-                    <span class="Booked"></span>
+                <span class="planned"></span>
+                    <span class="booked"></span>
                     <span class="Canceled"></span>
                 </div>
                 <div class="day">Fri</div>
             </div>
             <div class="tower">
                 <div class="chart">
-                <span class="palanned"></span>
-                    <span class="Booked"></span>
+                <span class="planned"></span>
+                    <span class="booked"></span>
                     <span class="Canceled"></span>
                 </div>
                 <div class="day">sat</div>
@@ -195,7 +199,7 @@ if(isset($_SESSION["user"])){
 
 
 
-    <a href="./auth/logout.inc.php">LOGOUT</a>
+    <!-- <a href="./auth/logout.inc.php">LOGOUT</a> -->
     
 
     <script src="./JS/user-home.js"></script>
