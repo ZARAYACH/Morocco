@@ -135,8 +135,8 @@ ul li a span{
     width: 70%;
 }
 .main{
-    width: 60%;
-    height: 100vh;
+    width: 66%;
+    margin-top: 1rem;
 }
 
 .id-card{
@@ -148,11 +148,12 @@ ul li a span{
     height: 97vh;
     position: fixed;
     right: 1rem;
+    top: .8rem;
     background-color: #303b47;
     border-radius: 2rem;
 }
 .placeholder{
-    width: 30%;
+    width: 24%;
     height: 100vh;
 }
 .user-img{

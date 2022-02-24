@@ -71,7 +71,7 @@ if(isset($_SESSION["user"])){
         <li class="click">
         <b></b>
                 <b></b>
-        <a >
+        <a href='./auth/logout.inc.php' >
                 <i class="fa fa-arrow-right-from-bracket"></i>    
                 <span>Log out</span>
                 </a>
@@ -85,8 +85,98 @@ if(isset($_SESSION["user"])){
     </div>
     
     <div class="main">
-      <div class="up"></div>
-      <div class="down"></div>
+      <div class="up">
+          <div class="spending">
+              <div class="spending-title">
+                  Travel Dashboard
+              </div>
+              <div class="dir"><span>Home</span></div>
+              <div class="spending-container">
+                  <div class="box">
+                      <div class="box-title">Booked travels</div>
+                      <div class="box-info">
+                          <div class="box-booked">100 </div>
+                          <div class="stat">
+                              <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                              <div class="stat-percentage">2.4%</div>
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="box">
+                      <div class="box-title">average costs $</div>
+                      <div class="box-info">
+                          <div class="box-booked">100 </div>
+                          <div class="stat">
+                              <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                              <div class="stat-percentage">2.4%</div>
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="box">
+                      <div class="box-title">canceld travels</div>
+                      <div class="box-info">
+                          <div class="box-booked">100 </div>
+                          <div class="stat">
+                              <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                              <div class="stat-percentage">2.4%</div>
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="box">
+                      <div class="box-title">total costs $</div>
+                      <div class="box-info">
+                          <div class="box-booked">100 </div>
+                          <div class="stat">
+                              <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                              <div class="stat-percentage">2.4%</div>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="photo">
+              <img src="./IMG/undraw_travel_together_re_kjf2.svg" alt="">
+          </div>
+
+      </div>
+      <div class="down">
+          <div class="down-title">Your booked travels</div>
+          <table>
+          <thead>
+        <tr>
+            <th >name</th>
+            <th >qte</th>
+            <th > tikets left</th>
+            <th >travel cost</th>
+            <th >type</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="name">
+                <div class="image"></div>
+                <div class="travel-name">
+                    marakech
+                    <span>Lorem ipsum dolor sit amet.</span>
+                </div>
+
+            </td>
+            <td class="qte">10</td>
+            <td class="tikets-left">100</td>
+            <td class="travel-cost">$100</td>
+            <td class="type"><i class="fa-solid fa-plane"></i></td>
+        </tr>
+
+    </tbody>
+          </table>
+      </div>
     </div>
 
 
