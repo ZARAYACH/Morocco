@@ -42,7 +42,7 @@ if(identifiedUser($email,$pwd)==false){
                     exit();
                 }
             }else{
-                header ("location:../user-home.php?ok=loginsucced");
+                header ("location:../user-home.php?ok=home");
                 exit();
             }
            

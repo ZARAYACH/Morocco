@@ -1,13 +1,14 @@
 <?php
 session_start();
+require_once './classes/user.cls.php';
+require_once './classes/trips.cls.php';
 if(isset($_SESSION["user"])){
     $user  = unserialize($_SESSION['user']);
+    $userId = $user->getId();
 }else{
     header("location:./log-in.php");
     exit();
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +25,7 @@ if(isset($_SESSION["user"])){
     <div class="nav">
         <div class="above">
         <ul>
-            <li class="click">
+            <li location="home" class="click active">
                 <b></b>
                 <b></b>
                 <a>
@@ -32,7 +33,7 @@ if(isset($_SESSION["user"])){
             <span>Home</span>
                 </a>
             </li>
-            <li class="click active">
+            <li location="profile" class="click ">
             <b></b>
                 <b></b>
                 <a>
@@ -40,7 +41,7 @@ if(isset($_SESSION["user"])){
                     <span>Profile</span>
                 </a>
             </li>
-            <li class="click">
+            <li location="reviews" class="click">
             <b></b>
                 <b></b>
                 <a>
@@ -48,15 +49,15 @@ if(isset($_SESSION["user"])){
                     <span>reviews</span>
                 </a>
             </li>
-            <li class="click">
+            <li location="search" class="click">
             <b></b>
                 <b></b>
                 <a>
-                <i class="fa-solid fa-clipboard"></i>
-                    <span>tikets</span>
+                <i class="fa fa-search"></i>
+                    <span>Search</span>
                 </a>
             </li>
-            <li class="click">
+            <li location="settings" class="click">
             <b></b>
                 <b></b>
                 <a>
@@ -85,7 +86,10 @@ if(isset($_SESSION["user"])){
     </div>
     
     <div class="main">
-      <div class="up">
+    <?php if(isset($_GET['ok'])){
+            if($_GET["ok"]=="home"){
+           ?>
+    <div class="up">
           <div class="spending">
               <div class="spending-title">
                   Travel Dashboard
@@ -95,7 +99,7 @@ if(isset($_SESSION["user"])){
                   <div class="box">
                       <div class="box-title">Booked travels</div>
                       <div class="box-info">
-                          <div class="box-booked">100 </div>
+                          <div class="box-booked"><?php $user->NbrOfBooked($userId); ?></div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
@@ -107,7 +111,7 @@ if(isset($_SESSION["user"])){
                   <div class="box">
                       <div class="box-title">average costs $</div>
                       <div class="box-info">
-                          <div class="box-booked">100 </div>
+                          <div class="box-booked"><?php $user->avergeCostOfBooked($userId); ?> </div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
@@ -119,7 +123,7 @@ if(isset($_SESSION["user"])){
                   <div class="box">
                       <div class="box-title">canceld travels</div>
                       <div class="box-info">
-                          <div class="box-booked">100 </div>
+                          <div class="box-booked">0 </div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
@@ -131,7 +135,7 @@ if(isset($_SESSION["user"])){
                   <div class="box">
                       <div class="box-title">total costs $</div>
                       <div class="box-info">
-                          <div class="box-booked">100 </div>
+                          <div class="box-booked"><?php $user-> totalCostOfBooked($userId); ?></div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
@@ -159,24 +163,104 @@ if(isset($_SESSION["user"])){
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td class="name">
-                <div class="image"><img src="./IMG/marakech.jpg" alt=""></div>
-                <div class="travel-name">
-                    marakech
-                    <span>Lorem ipsum dolor sit amet.</span>
-                </div>
-
-            </td>
-            <td class="qte">10</td>
-            <td class="tikets-left">100</td>
-            <td class="travel-cost">$100</td>
-            <td class="type"><i class="fa-solid fa-plane"></i></td>
-        </tr>
+       <?php $user->getAllBookedTravels($userId); ?> 
+        
 
     </tbody>
           </table>
       </div>
+      <?php }else if($_GET["ok"]=="search"){?>
+        <div class="up">
+          <div class="spending">
+              <div class="spending-title">
+                  Search 
+              </div>
+              <div class="dir"><span>Home</span><span>search</span></div>
+              <div class="spending-container">
+                  <div class="box">
+                      <div class="box-title">Booked travels</div>
+                      <div class="box-info">
+                          <div class="box-booked"><?php $user->NbrOfBooked($userId); ?></div>
+                          <div class="stat">
+                              <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                              <div class="stat-percentage">2.4%</div>
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="box">
+                      <div class="box-title">average costs $</div>
+                      <div class="box-info">
+                          <div class="box-booked"><?php $user->avergeCostOfBooked($userId); ?> </div>
+                          <div class="stat">
+                              <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                              <div class="stat-percentage">2.4%</div>
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="box">
+                      <div class="box-title">canceld travels</div>
+                      <div class="box-info">
+                          <div class="box-booked">0 </div>
+                          <div class="stat">
+                              <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                              <div class="stat-percentage">2.4%</div>
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="box">
+                      <div class="box-title">total costs $</div>
+                      <div class="box-info">
+                          <div class="box-booked"><?php $user-> totalCostOfBooked($userId); ?></div>
+                          <div class="stat">
+                              <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                              <div class="stat-percentage">2.4%</div>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="photo">
+              <img src="./IMG/undraw_explore_re_8l4v (1).svg" alt="">
+          </div>
+
+      </div>
+      <div class="down">
+          <div class="down-title">all the available trips</div>
+          <div class="search-bar">
+              <span>Explore our trips </span>
+              <select name="" id="destinations">
+                  <?php trips::tripsDestinations()?>
+              </select>
+              <input  type="date" id="timeDepart">
+              <input id="all" type="button" value="All trips">
+          </div>
+          <table class="table">
+          <thead>
+        <tr>
+            <th >name</th>
+            <th >tikets left</th>
+            <th >price</th>
+            <th >Time depart</th>
+            <th >type</th>
+        </tr>
+    </thead>
+    <tbody>
+       <?php trips::displayAllTripsDashbaord(); ?> 
+        
+
+    </tbody>
+          </table>
+      </div>
+      <?php
+    }
+} ?>
     </div>
 
 
@@ -291,7 +375,7 @@ if(isset($_SESSION["user"])){
 
     <!-- <a href="./auth/logout.inc.php">LOGOUT</a> -->
     
-
+    <script src="./JS/jquery-3.1.1.min.js"></script>
     <script src="./JS/user-home.js"></script>
 </body>
 </html>

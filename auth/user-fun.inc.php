@@ -1,5 +1,6 @@
 <?php
 require_once '../classes/connection.cls.php';
+require_once '../classes/trips.cls.php';
 if(isset($_POST['what'])){
     if($_POST['what'] == 'del'){
         $result = false;
@@ -62,6 +63,27 @@ if(isset($_POST['what'])){
            }
             
             
+        }else if($_POST["what"]=="search"){
+            if(isset($_POST["value"])){
+                $to = $_POST["value"];
+                if(isset($_POST["date"])){
+                    $date = $_POST["date"];
+                    echo(trips::displaySearchWithDestinationAndTime($to,$date));
+                }else{
+                    echo(trips::displaySearchWithDestination($to));
+
+                }
+            }else{
+                if(isset($_POST["date"])){
+                    $date = $_POST["date"];
+                    echo(trips::displaySearchWithTime($date));
+                }else{
+                    // echo(trips::displaySearchWithDestination($to));
+
+                }
+            }
+        }else if($_POST["what"]=="displayAll"){
+            echo(trips::displayAllTripsDashbaord());
         }
 
     }

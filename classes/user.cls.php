@@ -100,6 +100,83 @@ class user{
       return $result;
 
     }
+    public function NbrOfBooked($userId)
+    {
+       $sql = "select count(*) from booked where id_user = '$userId'";
+       $return = connection::selectionFromDb($sql);
+       if($return){
+         while($row = $return->fetch()){
+            echo($row[0]);
+         }
+    }
+   }
+   public function avergeCostOfBooked($userId)
+   {
+      $sql = "select avg(tatalPaid) from booked where id_user = '$userId'";
+      $return = connection::selectionFromDb($sql);
+      if($return){
+        while($row = $return->fetch()){
+           echo($row[0]);
+        }
+   }
+  }
+  public function totalCostOfBooked($userId)
+  {
+     $sql = "select sum(tatalPaid) from booked where id_user = '$userId'";
+     $return = connection::selectionFromDb($sql);
+     if($return){
+       while($row = $return->fetch()){
+          echo($row[0]);
+       }
+  }
+ }
+    public function getAllBookedTravels($userId)
+    {
+       $sql = "select * from booked where id_user = '$userId'";
+       $return = connection::selectionFromDb($sql);
+      if($return){
+         while($row = $return->fetch()){
+            $idBooked =$row[0];
+            $idTrip = $row[1]; 
+            $qte = $row[3];
+            $prixForOne = $row[4];
+            $totalPaid = $row[5];
+            $date = $row[6];
+            $sql = "select * from trips where trip_id = $idTrip";
+            $return2 = connection::selectionFromDb($sql);
+            while($row2 = $return2->fetch()){
+               $destination = $row2[1];
+               $description = $row2[2];
+               $priceForOne = $row2[3];
+               $maxPersonne = $row2[4];
+               $img = $row2[5];
+               $timeDepart = $row[6];
+               $sql = "select sum(qte) from booked where id_trip = '$idTrip'";
+               $return3 = connection::selectionFromDb($sql);
+               while($row3 = $return3->fetch()){
+                  $sumBooked = $row3[0];
+               }
+               $tiketsLeft = $maxPersonne - $sumBooked ; 
+               echo("<tr>
+               <td class='name'>
+                   <div class='image'><img src='$img' alt=''></div>
+                   <div class='travel-name'>
+                       $destination
+                       <span>$description</span>
+                   </div>
+   
+               </td>
+               <td class='qte'>$qte</td>
+               <td class='tikets-left'>$tiketsLeft</td>
+               <td class='travel-cost'>$$totalPaid</td>
+               <td class='type'><i class='fa-solid fa-plane'></i></td>
+           </tr>");
+            }
+         }
+      }else{
+         echo("<tr><td colspan='6'>go ahead and get your tikets now</td></tr>");
+      }
+    }
     public static function displaySettings($userName,$firstName,$lastName,$email,$admin){
       echo("
     <div class='settings'>
