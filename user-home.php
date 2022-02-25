@@ -142,13 +142,13 @@ if(isset($_SESSION["user"])){
               </div>
           </div>
           <div class="photo">
-              <img src="./IMG/undraw_travel_together_re_kjf2.svg" alt="">
+              <img src="./IMG/undraw_explore_re_8l4v (1).svg" alt="">
           </div>
 
       </div>
       <div class="down">
           <div class="down-title">Your booked travels</div>
-          <table>
+          <table class="table">
           <thead>
         <tr>
             <th >name</th>
@@ -161,7 +161,7 @@ if(isset($_SESSION["user"])){
     <tbody>
         <tr>
             <td class="name">
-                <div class="image"></div>
+                <div class="image"><img src="./IMG/marakech.jpg" alt=""></div>
                 <div class="travel-name">
                     marakech
                     <span>Lorem ipsum dolor sit amet.</span>
