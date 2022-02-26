@@ -8,9 +8,10 @@ if($_POST){
     header ("location:..\log-in.php?error=wrongway");
     exit();
 }
-// require_once '..\classes\admin.cls.php';
-require_once '..\auth\functions.inc.php';
-require_once '..\classes\user.cls.php';
+require_once "..\classes\admin.cls.php";
+require_once "functions.inc.php";
+require_once "..\classes\user.cls.php";
+
 
 if(empty($email) || empty($pwd)){
     header ("location:..\log-in.php?error=emptyinput");
@@ -47,13 +48,13 @@ if(identifiedUser($email,$pwd)==false){
             }
            
         }
-        // else if($row[6]){
-        //     $admin = new admin($row[0],$row[1],$row[2],$row[3],$row[4],$row[5],$row[6]);
-        //     session_start();
-        //     $_SESSION['admin'] = serialize($admin);
-        //     header ("location:..\pages\admin-home.php?ok=loginsucced");
-        //     exit();
-        // }   
+        else if($row[6]){
+            $admin = new admin($row[0],$row[1],$row[2],$row[3],$row[4],$row[5],$row[6]);
+            session_start();
+            $_SESSION['admin'] = serialize($admin);
+            header ("location:../admin-home.php");
+            exit();
+        }   
         
     }
 

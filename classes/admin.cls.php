@@ -1,8 +1,8 @@
 <?php 
 
-require_once "../classes/connection.cls.php";
-require_once "../classes/user.cls.php";
-require_once "../classes/note.cls.php";
+require_once "connection.cls.php";
+require_once "user.cls.php";
+require_once "trips.cls.php";
 
 class admin extends user{
 

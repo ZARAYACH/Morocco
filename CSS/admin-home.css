@@ -145,7 +145,7 @@ ul li a span{
     justify-content: center;
     align-items: flex-start;
 }
-.spending{
+.control{
     width: 50%;
 }
 .spending-title{
@@ -576,3 +576,76 @@ option{
     position: absolute;
     bottom: 7PX;
 }
+.add-trips-pannel{
+    padding-top: 1rem;
+    width: 100%;
+}
+.control{
+    width: 100%;
+}
+.controle-title{
+    width: 100%;
+    margin-top: .5rem;
+    font-size: 1.4rem;
+    font-weight: 900;
+}
+.control form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: flex-start;
+}
+.control form .form-body {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    height: 3rem;
+    margin-bottom: .7rem;
+
+}
+.form-body-body{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+    
+}
+.form-body-body label{
+    font-size: .8rem;
+    opacity: .8;
+    margin-bottom: .5rem;
+}
+.form-body-body input{
+    border: none;
+    outline: none;
+    background-color:#5a636de6;
+    width: 75%;
+    color: white;
+    padding:.5rem .5rem;
+    height: 1rem;
+    border-radius: .3rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.form-btn{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    height: 4rem;
+}
+.form-btn input[type='submit']{
+    width: 4rem;
+    height: 2rem;
+    background-color: #1edc83;
+    color: white;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    border-radius: .5rem;
+
+}
+

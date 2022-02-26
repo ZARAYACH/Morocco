@@ -1,7 +1,7 @@
 let navBtn = document.querySelectorAll(".click");
 let wher = window.location.search;
 if(!wher.includes("?ok=")){
-    window.location = "./user-home.php?ok=home";
+    window.location = "./admin-home.php?ok=home";
 }
 if(wher.includes("?ok=home")){
     navBtn[0].classList.add("active");
@@ -36,7 +36,6 @@ destination.addEventListener('change',()=>{
 let dateBtn = document.querySelector("#timeDepart");
 dateBtn.addEventListener('change',()=>{
     $(function(){   
-        let value = document.querySelector("#destinations").value;
         let date = document.querySelector("#timeDepart").value;
         let fd = new FormData();
         if(date === ""){
@@ -44,7 +43,6 @@ dateBtn.addEventListener('change',()=>{
         }else{
          fd.append("what","search");
          fd.append("date",date);
-         fd.append("value",value);
          $.ajax({
             type: 'POST',
             url:'auth/user-fun.inc.php',
@@ -75,6 +73,8 @@ btnAll.addEventListener('click',()=>{
 })
 })
 
+}else if(wher.includes("?ok=controle")){
+    navBtn[2].classList.add("active");
 }
 
 
@@ -113,9 +113,11 @@ for (let i = 0; i < navBtn.length; i++) {
        let location = e.currentTarget.getAttribute("location");
        if(location =='home'){
            let main = document.querySelector(".main");
-            window.location = "./user-home.php?ok=home"
+            window.location = "./admin-home.php?ok=home"
        }else if(location == "search"){
-        window.location = "./user-home.php?ok=search"
+        window.location = "./admin-home.php?ok=search"
+       }else if(location == "controle"){
+        window.location = "./admin-home.php?ok=controle"
        }
     })
     
