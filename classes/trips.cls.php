@@ -42,7 +42,7 @@ class trips{
 
     public static function displayTrips()
     {
-        $sql ="select * from trips";
+        $sql ="select * from trips ";
         $return = connection::selectionFromDb($sql);
         
         while($row = $return->fetch()){
@@ -115,6 +115,41 @@ class trips{
            
          }
         
+    }
+    public static function displayAllTripsDashbaordd()
+    {
+        $sql ="select trip_id,destination,description,price,max_persone,img,date(time_depart) from trips";
+        $return = connection::selectionFromDb($sql);
+        while($row = $return->fetch()){
+            $id =$row[0] ;
+            $to = $row[1];
+            $desc = $row[2];
+            $price = $row[3];
+            $maxPer = $row[4];
+            $img= $row[5];
+            $timeDepart = $row[6];
+            $sql = "select sum(qte) from booked where id_trip = '$id'";
+            $return2 = connection::selectionFromDb($sql);
+            while($row2 = $return2->fetch()){
+               $sumBooked = $row2[0];
+               $left  = $maxPer - $sumBooked;
+               echo("<tr>
+               <td class='name'>
+                   <div class='image'><img src='$img' alt=''></div>
+                   <div class='travel-name'>
+                       $to
+                       <span>$desc</span>
+                   </div>
+   
+               </td>
+               <td class='qte'>$left</td>
+               <td class='tikets-left'>$price</td>
+               <td class='travel-cost'>$timeDepart</td>
+               <td class='type delete'><i tripId='$id' class='fa-solid fa-trash'></i></td>
+           </tr>");
+            }
+           
+         }
     }
 
     public static function displayCart($userId)
@@ -268,9 +303,42 @@ class trips{
          }
         
     }
-
+    public static function displayPurchade($selled)
+    {
+       for ($i=0; $i <count($selled) ; $i++) { 
+           $sql = "select * from booked where id = '$selled[$i]'";
+           $return = connection::selectionFromDb($sql);
+           if($return){
+               while($row = $return->fetch()){
+                   $to = $row[1];
+                   $qte = $row[3];
+                   $price= $row[4];
+                   $totla = $row[5];
+                   $sql = "select * from trips where trip_id = '$to'"; 
+                   $return2 = connection::selectionFromDb($sql);
+           if($return2){
+               while($row2 = $return2->fetch()){
+                   $destination = $row2[1];
+                   $date = $row2[6];
+                   echo("<tr>
+                   <td class='name'>
+                       <div class='travel-name'>
+                           $destination
+                       </div>
+       
+                   </td>
+                   <td class='qte'>$qte</td>
+                   <td class='tikets-left'>$price</td>
+                   <td class='travel-cost'>$totla</td>
+                   <td>$date</td>
+                                  </tr>");
+               }
+           }
+       }
+    }
     
 
 
 }
 
+    }}

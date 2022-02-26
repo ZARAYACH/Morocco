@@ -101,9 +101,9 @@ require_once './classes/trips.cls.php';
               <div class="dir"><span>Home</span></div>
               <div class="spending-container">
                   <div class="box">
-                      <div class="box-title">Booked travels</div>
+                      <div class="box-title">sold trips</div>
                       <div class="box-info">
-                          <div class="box-booked"><?php  ?></div>
+                          <div class="box-booked"><?php echo($admin->nbrSold()); ?></div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
@@ -115,7 +115,7 @@ require_once './classes/trips.cls.php';
                   <div class="box">
                       <div class="box-title">average costs $</div>
                       <div class="box-info">
-                          <div class="box-booked"><?php ?> </div>
+                          <div class="box-booked"><?php echo($admin->avgCost()); ?> </div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
@@ -137,9 +137,9 @@ require_once './classes/trips.cls.php';
                   </div>
 
                   <div class="box">
-                      <div class="box-title">total costs $</div>
+                      <div class="box-title">total earned $</div>
                       <div class="box-info">
-                          <div class="box-booked"><?php ?></div>
+                          <div class="box-booked"><?php echo($admin->sumCost()); ?></div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
@@ -155,19 +155,20 @@ require_once './classes/trips.cls.php';
 
       </div>
       <div class="down">
-          <div class="down-title">Your booked travels</div>
+          <div class="down-title">Top trips</div>
           <table class="table">
           <thead>
         <tr>
             <th >name</th>
             <th >qte</th>
+            <th>user id</th>
             <th > tikets left</th>
             <th >travel cost</th>
             <th >type</th>
         </tr>
     </thead>
     <tbody>
-       <?php ?> 
+       <?php $admin->getAllBookedTravelss(); ?> 
         
 
     </tbody>
@@ -242,8 +243,8 @@ require_once './classes/trips.cls.php';
               <select name="" id="destinations">
                   <?php trips::tripsDestinations()?>
               </select>
-              <input  type="date" id="timeDepart">
-              <input id="all" type="button" value="All trips">
+              <input required  type="date" id="timeDepart">
+              <input required id="all" type="button" value="All trips">
           </div>
           <table class="table">
           <thead>
@@ -270,45 +271,50 @@ require_once './classes/trips.cls.php';
               </div>
               <div class="dir"><span>Home</span><span>Controle Pannel</span></div>
               <div class="add-trips-pannel">
-                  <form action="" enctype="multipart/form-data">
+                  <form action="./auth/addTrip.inc.php" method="POST" enctype="multipart/form-data">
                       <div class="form-body">
                         <div class="form-body-body">
                         <label for="to">Destination</label>
-                        <input id="to" name="to" type="text">
+                        <input required id="to" name="to" type="text">
                         </div>
                         <div class="form-body-body">
                         <label for="desc">Description</label>
-                        <input id="desc" name="desc" type="text">
+                        <input required id="desc" name="desc" type="text">
                         </div>
                       
                       </div>
                       <div class="form-body">
                         <div class="form-body-body">
                         <label for="price">price</label>
-                        <input id="price" name="price" type="text">
+                        <input required id="price" name="price" type="number">
                             </div>
                             <div class="form-body-body">
                             <label for="max">max seats</label>
-                        <input id="max" name="max" type="text">
+                        <input required id="max" name="max" type="number">
                         </div>
                       </div>
 
                       <div class="form-body">
                         <div class="form-body-body">
                         <label for="depart">time depart</label>
-                        <input id="depart" name="depart" type="date"> 
+                        <input required id="depart" name="depart" type="date"> 
                             </div>
                         <div class="form-body-body">
                         <label for="img">add a image</label>
-                        <input type="file" name="img" id="img">
+                        <input required type="file" name="img" id="img">
                       </div> 
                       
                       </div>
                      
                      
                      <div class="form-btn">
+                     <div class="form-body-body">
                      <input type="reset" value="reset">
-                     <input type="submit" value="add">
+                     </div>
+                     <div class="form-body-body">
+                     <input  type="submit" value="add">
+                     </div>
+                     
                        
                      </div>
                        
@@ -327,11 +333,11 @@ require_once './classes/trips.cls.php';
             <th >tikets left</th>
             <th >price</th>
             <th >Time depart</th>
-            <th >type</th>
+            <th >action</th>
         </tr>
     </thead>
     <tbody>
-       <?php trips::displayAllTripsDashbaord(); ?> 
+       <?php trips::displayAllTripsDashbaordd(); ?> 
         
 
     </tbody>
@@ -352,7 +358,7 @@ require_once './classes/trips.cls.php';
     <div class="id-card">
     <div class="user-img"><img src="./IMG/pic4.png" alt=""></div>
         <div class="user-name">
-            Camerron Robins <span>Sales manager</span>
+            Mohammed chbani <span>Manager </span>
         </div>
     <div class="contact">
         <p>Contact information</p>

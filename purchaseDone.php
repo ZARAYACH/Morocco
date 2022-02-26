@@ -1,3 +1,11 @@
+<?php
+session_start();
+require_once './classes/trips.cls.php';
+if(isset($_SESSION['selled'])){
+    $selled = unserialize($_SESSION['selled']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,100 +13,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
+<style>
+    .wrapper{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+       
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: white;
+    }
+    .pp{
+        width: 40%;
+        height: 10rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .logo{
+        width: 80%;
+        height: 8rem;
+    }
+    .logo img{
+        max-width: 100%;
+        max-height: 100%;
+    } 
+    .text{
+        width: 100%;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    
+</style>
 <body>
-    <div id="element">
-        <div class="logo">
-            <img src="./Webthought.png" width="100px" style="border-radius: 100%;" alt="">
-            <b>TravelThought</b>
-        </div>
-        <div style="font-size: 1.2rem;margin-left: 300px;"><b>Tickets</b></div>
-        <br><br>
-        <div style="position: relative;">
-    <div style="margin-left: 100px;">
-        <p>Code Client: 1</p>
-        <p>Nᵒ de Ticket: 1</p>
-        <p>Date: 15/02/2022</p>
-        <p>Mode de reglement: cheque</p>
-        <p>Rubrique: additif et rectificatif</p>
-    </div>
-    <div style="margin-left: 500px;position: absolute;top: 10px;"">
-        <p>Ismontic</p>
-        <p>Karim</p>
-        <p>Marjan Rue 10 Lots 5</p>
-        <p>90100 Tanger</p>
+
+
+<div class="wrapper">
+    <div class="pp">
+        <div class="logo"><img src="./IMG/done-text-green-grungy-vintage-rectangle-stamp-done-text-green-grungy-vintage-stamp-214435444.jpg" alt=""> </div>
+        <div class ="text">wait your Tikets will be soon availaible </div>
     </div>
 </div>
-        <!-- <div class="html2pdf__page-break"></div> -->
-        <br><br>
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                </tbody>
-            </table>
-            <br><br>
-            <div>
-                <table class="table table-striped" style="width: 40%;">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        </tbody>
-                    </table>
-            </div>
-            <div style="background-color: #eee;width: 40%;padding: 5px; margin-left: 500px;position: absolute;top: 650px;">
-                <p>Total net HT: 84.63$</p>
-                <p>Total TVA: 9.16$</p>
-                <p>Total TTC: 93.79$</p>
-            </div>
+
+    <div id="element" >
+        <H1>YOUR TIKETS</H1>
+    <table  border=1 class="table" style="width: 100%;border-collapse:collapse;">
+          <thead>
+        <tr>
+            <th >name</th>
+            <th >qte</th>
+            <th >price</th>
+            <th >totle</th>
+            <th >Time depart</th>
+        </tr>
+    </thead>
+    <tbody>
+       <?php trips::displayPurchade($selled); ?> 
+        
+
+    </tbody>
+          </table>
     </div>
 
 

@@ -75,6 +75,27 @@ btnAll.addEventListener('click',()=>{
 
 }else if(wher.includes("?ok=controle")){
     navBtn[2].classList.add("active");
+    let deleteBtn = document.querySelectorAll(".delete i");
+    for (let i = 0; i < deleteBtn.length; i++) {
+        deleteBtn[i].addEventListener("click" ,(e)=>{
+            console.log(e.currentTarget.getAttribute('tripId'));
+           let tripId = e.currentTarget.getAttribute('tripId');
+           $(function(){   
+            $.ajax({
+                type: 'POST',
+                url:'auth/user-fun.inc.php',
+                data : "what="+"deleteTrip"+"&tripId="+tripId
+              }).done(function (res){
+                
+                if(res != false){
+                    let tbody = document.querySelector("tbody");
+                tbody.innerHTML = res;
+                }
+        })
+    })
+        })
+        
+    }
 }
 
 

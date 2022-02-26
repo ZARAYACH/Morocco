@@ -320,7 +320,7 @@ ul li a span{
     text-align: center;
 }
 .table thead tr th:nth-child(1){
-    width: 50%;
+    width: 40%;
     padding-left: .5rem;
     text-align: left;
 }
@@ -646,6 +646,28 @@ option{
     border: none;
     outline: none;
     border-radius: .5rem;
+    cursor: pointer;
+    transition: .3s;
 
 }
+.form-btn input[type='reset']{
+    width: 4rem;
+    height: 2rem;
+    background-color: #dc1e1e;
+    color: white;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: .3s;
 
+}
+.delete i{
+    transform: none !important;
+    cursor: pointer;
+    transition: .3s;
+}
+.delete i:hover{
+    color: #dc1e1e;
+}

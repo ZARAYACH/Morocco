@@ -71,7 +71,7 @@
             <img src="IMG/undraw_aircraft_fbvl.svg" alt="">
         </div>
 
-        <form action="">
+        <form action="./auth/logined.inc.php?search=ok">
             <div class="inputBox">
                 <h3>where to</h3>
                 <input type="text" placeholder="place name">
@@ -88,7 +88,7 @@
                 <h3>leaving</h3>
                 <input type="date">
             </div>
-            <input type="submit" class="btn" value="search">
+            <input  type="submit" class="btn search" value="search">
         </form>
 
     </div>

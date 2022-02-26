@@ -1,6 +1,8 @@
 <?php
 require_once '../classes/connection.cls.php';
 require_once '../classes/trips.cls.php';
+require_once '../classes/admin.cls.php';
+session_start();
 if(isset($_POST['what'])){
     if($_POST['what'] == 'del'){
         $result = false;
@@ -38,7 +40,7 @@ if(isset($_POST['what'])){
         }else{
             //logs
         }
-
+        $selled = [];
             for ($i=0; $i < count($tripIdsAndQte) ; $i++) {
                 $result = false; 
                 $exploded = explode(',',$tripIdsAndQte[$i]);
@@ -50,6 +52,14 @@ if(isset($_POST['what'])){
                 $return = connection::actionOnDB($sql);
                 if($return){
                     $result = "done";
+                    $sql = "select id from booked order by id desc limit 1 ";
+                    $return = connection::selectionFromDb($sql);
+                    if($return){
+                        
+                        while($row =$return->fetch()){
+                            array_push($selled,$row[0]);
+                        }
+                    } 
                  $sql = "delete from cart where id = '$tripId'";
                  $return = connection::actionOnDB($sql);
                  if($return){
@@ -59,7 +69,9 @@ if(isset($_POST['what'])){
                  }
                 }
              }
+             $_SESSION["selled"] = serialize($selled);
              echo $result; 
+            
            }
             
             
@@ -84,7 +96,18 @@ if(isset($_POST['what'])){
             }
         }else if($_POST["what"]=="displayAll"){
             echo(trips::displayAllTripsDashbaord());
+        }else if($_POST["what"] == "deleteTrip"){
+            if($_POST["tripId"]){
+                $tripId = $_POST["tripId"]; 
+                 $return = admin::deleteTrip($tripId);
+                if($return){
+                    echo trips::displayAllTripsDashbaordd();
+                }else{
+                    echo(false);
+                }
+                
         }
 
     }
 
+}
