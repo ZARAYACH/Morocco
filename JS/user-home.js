@@ -75,6 +75,57 @@ btnAll.addEventListener('click',()=>{
 })
 })
 
+}else if(wher.includes("?ok=Profile")){
+    navBtn[1].classList.add("active");
+    async function getCodes(){
+        const res = await fetch("https://restcountries.com/v2/all");
+        const data = await res.json();
+       let select =  document.querySelector('.container')
+       for (let i = 0; i < data.length; i++) {
+           if(data[i].numericCode !="732" && data[i].numericCode !="376" ){
+            const contryCode =data[i].alpha3Code;
+           const callingCode = '+'+data[i].callingCodes;
+           const flag = data[i].flags.png
+           select.innerHTML +=`<div callingCode="${callingCode}" class="option">
+                <div class="img"><img src=${flag} alt=""></div>
+                <span>${contryCode}</span>
+            </div>`  
+            }
+           
+       }
+    }
+    
+    async function select(){
+        await getCodes();
+        let option = await document.querySelectorAll(".option");
+        let input = document.querySelector(".input");
+        for (let i = 0; i < option.length; i++) {
+            option[i].addEventListener("click",(e)=>{
+            let code = e.currentTarget.getAttribute("callingcode");
+            let cont = document.querySelector(".container")
+            cont.classList.remove("set");
+            input.value =`${code}`
+            console.log(e.currentTarget.querySelector(".img img").src);
+            let flagg =  e.currentTarget.querySelector(".img img").src;
+            document.querySelector("#cou").src = flagg;
+            })
+            
+        }
+        
+        }
+        
+        select();
+    
+        let down = document.querySelector(".downn");
+        down.addEventListener('click',()=>{
+            let cont = document.querySelector(".container")
+            if(cont.classList.contains("set")){
+                cont.classList.remove("set");
+            }else{
+                cont.classList.add("set");
+            }
+        })
+    
 }
 
 
@@ -98,6 +149,7 @@ for (let i = 0; i < nav.length; i++) {
     nav[i].addEventListener('mouseenter',(e)=>{
         nav[0].style.width = "16rem";
         nav[1].style.width = "16rem";
+        
     })
     
 }
@@ -116,7 +168,11 @@ for (let i = 0; i < navBtn.length; i++) {
             window.location = "./user-home.php?ok=home"
        }else if(location == "search"){
         window.location = "./user-home.php?ok=search"
+       }else if(location == "profile"){
+        window.location = "./user-home.php?ok=Profile"
        }
     })
     
 }
+
+

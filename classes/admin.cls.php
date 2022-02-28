@@ -92,7 +92,11 @@ class admin extends user{
         $return = connection::selectionFromDb($sql);
         while($row = $return->fetch()){
             $sum = $row[0]; 
-            return $sum;
+            if($sum){
+                return $sum;
+            }else{
+                return '0';
+            }
         }
     }
     public function avgCost()

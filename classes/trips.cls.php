@@ -42,7 +42,7 @@ class trips{
 
     public static function displayTrips()
     {
-        $sql ="select * from trips ";
+        $sql ="select * from trips LIMIT 6 ";
         $return = connection::selectionFromDb($sql);
         
         while($row = $return->fetch()){

@@ -84,7 +84,7 @@ if(isset($_SESSION["user"])){
         
 
     </div>
-    
+
     <div class="main">
     <?php if(isset($_GET['ok'])){
             if($_GET["ok"]=="home"){
@@ -259,6 +259,41 @@ if(isset($_SESSION["user"])){
           </table>
       </div>
       <?php
+    }else if($_GET["ok"]=="Profile"){
+        ?>
+ <div class="up">
+          <div class="spending">
+              <div class="spending-title">
+                  Your Profile
+              </div>
+              <div class="dir"><span>Home</span><span>Profile</span></div>
+              <div class="spending-container pro">
+                        <div class="tiltle">Contact Informations</div>
+                    <label for="">Your email :</label>
+                    <input type="text" disabled name="" id="email" value=<?php echo($user->getEmail());?>>
+                    <label for="">Phone Number :</label>
+                    <div class="phone">
+                    <div class="select"> 
+                         <div class="cou"><img id="cou" src="" alt=""></div>
+                         <input class="input" type="text">
+                         <i class="fa-solid fa-angle-down downn"></i>                         <div class="container">
+                    </div>
+                </div>
+                    <input type="text">
+                    </div>
+              
+
+                </div>
+          </div>
+          <div class="photo">
+              <img src="./IMG/undraw_explore_re_8l4v (1).svg" alt="">
+          </div>
+
+          </div>
+
+
+
+<?php
     }
 } ?>
     </div>

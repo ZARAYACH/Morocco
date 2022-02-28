@@ -115,7 +115,14 @@ require_once './classes/trips.cls.php';
                   <div class="box">
                       <div class="box-title">average costs $</div>
                       <div class="box-info">
-                          <div class="box-booked"><?php echo($admin->avgCost()); ?> </div>
+                          <div class="box-booked"><?php if($admin->avgCost()>=1000){
+                              $s = explode(",",number_format($admin->avgCost(),2));
+                              $o = number_format($s[1],0);
+                              echo($s[0] ."," .$o[0].$o[1]."k"); 
+                          }else{
+                              echo(number_format($admin->avgCost(),2));
+            }
+                          ?> </div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
@@ -139,7 +146,14 @@ require_once './classes/trips.cls.php';
                   <div class="box">
                       <div class="box-title">total earned $</div>
                       <div class="box-info">
-                          <div class="box-booked"><?php echo($admin->sumCost()); ?></div>
+                          <div class="box-booked"><?php if($admin->sumCost()>=1000){
+                              $s = explode(",",number_format($admin->sumCost(),2));
+                              $o = number_format($s[1],0);
+                              echo($s[0] ."," .$o[0].$o[1]."k"); 
+                          }else{
+                              echo(number_format($admin->sumCost(),2));
+            }
+                          ?></div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
@@ -185,7 +199,7 @@ require_once './classes/trips.cls.php';
                   <div class="box">
                       <div class="box-title">Booked travels</div>
                       <div class="box-info">
-                          <div class="box-booked"><?php ?></div>
+                          <div class="box-booked"><?php echo($admin->nbrSold()); ?></div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
@@ -197,7 +211,14 @@ require_once './classes/trips.cls.php';
                   <div class="box">
                       <div class="box-title">average costs $</div>
                       <div class="box-info">
-                          <div class="box-booked"><?php ?> </div>
+                          <div class="box-booked"><?php if($admin->avgCost()>=1000){
+                              $s = explode(",",number_format($admin->avgCost(),2));
+                              $o = number_format($s[1],0);
+                              echo($s[0] ."," .$o[0].$o[1]."k"); 
+                          }else{
+                              echo(number_format($admin->avgCost(),2));
+            }
+                          ?></div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
@@ -221,7 +242,14 @@ require_once './classes/trips.cls.php';
                   <div class="box">
                       <div class="box-title">total costs $</div>
                       <div class="box-info">
-                          <div class="box-booked"><?php  ?></div>
+                          <div class="box-booked"><?php if($admin->sumCost()>=1000){
+                              $s = explode(",",number_format($admin->sumCost(),2));
+                              $o = number_format($s[1],0);
+                              echo($s[0] ."," .$o[0].$o[1]."k"); 
+                          }else{
+                              echo(number_format($admin->sumCost(),2));
+            }
+                          ?></div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
