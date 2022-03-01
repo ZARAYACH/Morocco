@@ -91,6 +91,14 @@ btnAll.addEventListener('click',()=>{
                 <span>${contryCode}</span>
             </div>`  
             }
+             if(data[i].numericCode == "504"){
+                let input = document.querySelector(".input");
+                input.value ='+' + data[i].callingCodes;
+                document.querySelector("#cou").src =data[i].flags.png ;
+
+
+
+            }
            
        }
     }
@@ -104,10 +112,12 @@ btnAll.addEventListener('click',()=>{
             let code = e.currentTarget.getAttribute("callingcode");
             let cont = document.querySelector(".container")
             cont.classList.remove("set");
+            arrow.style.transform = "rotateZ(0deg)";
             input.value =`${code}`
             console.log(e.currentTarget.querySelector(".img img").src);
             let flagg =  e.currentTarget.querySelector(".img img").src;
             document.querySelector("#cou").src = flagg;
+
             })
             
         }
@@ -115,15 +125,26 @@ btnAll.addEventListener('click',()=>{
         }
         
         select();
-    
+        let cont = document.querySelector(".container")
         let down = document.querySelector(".downn");
+        let arrow = document.querySelector(".downn");
         down.addEventListener('click',()=>{
-            let cont = document.querySelector(".container")
             if(cont.classList.contains("set")){
                 cont.classList.remove("set");
+                arrow.style.transform = "rotateZ(0deg)";
             }else{
                 cont.classList.add("set");
+                arrow.style.transform = "rotateZ(180deg)";
             }
+        })
+
+        let edit = document.querySelector("#edit");
+        edit.addEventListener("click",()=>{
+            let box = document.querySelector(".pro");
+            box.style.animation = "rotate .9s"
+            setTimeout(() => {
+                box.style.animation = "none"
+            }, 1500);
         })
     
 }

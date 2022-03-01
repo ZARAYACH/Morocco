@@ -268,18 +268,22 @@ if(isset($_SESSION["user"])){
               </div>
               <div class="dir"><span>Home</span><span>Profile</span></div>
               <div class="spending-container pro">
-                        <div class="tiltle">Contact Informations</div>
-                    <label for="">Your email :</label>
+                <div class="head">
+                <div class="tiltle">Contact Informations : </div>
+                <i class="fa fa-edit" id="edit" ></i>
+                </div>
+              <label for="">Your email :</label>
                     <input type="text" disabled name="" id="email" value=<?php echo($user->getEmail());?>>
                     <label for="">Phone Number :</label>
                     <div class="phone">
-                    <div class="select"> 
-                         <div class="cou"><img id="cou" src="" alt=""></div>
-                         <input class="input" type="text">
-                         <i class="fa-solid fa-angle-down downn"></i>                         <div class="container">
+                        <div class="select"> 
+                            <div class="cou"><img id="cou" src="" alt=""></div>
+                            <input disabled class="input" type="text">
+                            <i class="fa-solid fa-angle-down downn"></i>  
+                            <div class="container">
+                        </div>
                     </div>
-                </div>
-                    <input type="text">
+                    <input id='phoneNbr' type="text">
                     </div>
               
 
