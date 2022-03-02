@@ -80,6 +80,7 @@ btnAll.addEventListener('click',()=>{
     async function getCodes(){
         const res = await fetch("https://restcountries.com/v2/all");
         const data = await res.json();
+        let input = document.querySelector(".input");
        let select =  document.querySelector('.container')
        for (let i = 0; i < data.length; i++) {
            if(data[i].numericCode !="732" && data[i].numericCode !="376" ){
@@ -91,13 +92,10 @@ btnAll.addEventListener('click',()=>{
                 <span>${contryCode}</span>
             </div>`  
             }
-             if(data[i].numericCode == "504"){
+             if(data[i].callingCodes ==input.value){
                 let input = document.querySelector(".input");
                 input.value ='+' + data[i].callingCodes;
                 document.querySelector("#cou").src =data[i].flags.png ;
-
-
-
             }
            
        }
@@ -138,13 +136,60 @@ btnAll.addEventListener('click',()=>{
             }
         })
 
-        let edit = document.querySelector("#edit");
+        let edit = document.querySelector("#edit"); 
         edit.addEventListener("click",()=>{
+            let editBol = document.querySelector("#edit").getAttribute("edit"); 
             let box = document.querySelector(".pro");
-            box.style.animation = "rotate .9s"
+            let email = document.querySelector("#email");
+            let cellingCode = document.querySelector("#ext"); 
+            let phone = document.querySelector("#phoneNbr");
+            if(editBol == "true"){
+                $(function(){  
+                    if(email.value != '' && cellingCode.value != '' && phone.value !=''){
+                        let phoneNbr = cellingCode.value+'/'+phone.value 
+                        let dt;
+                        if(reelEmail == email.value){
+                          dt =   "what="+"editContact"+"&phoneNbr="+phoneNbr
+                        }else{
+                             dt = "what="+"editContact"+"&phoneNbr="+phoneNbr+"&email="+email.value
+                        }
+                        $.ajax({
+                            type:'POST',
+                            url:'auth/user-fun.inc.php',
+                            data : dt
+                        }).done(function (res){
+                              console.log(res);
+                            if(res == "editContactSucces"){
+                                email.setAttribute("disabled",true);
+                                phone.setAttribute("disabled",true);
+                                edit.classList = "fa-solid fa-edit";
+                                box.style.animation = "rotate .9s"
+                                setTimeout(() => {
+                                    box.style.animation = "none"
+                                }, 1500);
+                                window.location = "./auth/logout.inc.php"
+
+                            }else if(res=="phoneNbrChanged"){
+                                
+                            }
+                    })
+                    }else{
+                        email.style.backgroundColor = 'red';
+                        phone.style.backgroundColor = 'red';
+                        cellingCode.style.backgroundColor = 'red';
+                    }
+            })
+            }else if(editBol == "false"){
+                 email.removeAttribute("disabled");
+                 phone.removeAttribute("disabled");
+                 edit.setAttribute("edit","true");
+                edit.classList = "fa-solid fa-check"
+                box.style.animation = "rotate .9s"
             setTimeout(() => {
                 box.style.animation = "none"
             }, 1500);
+            }
+            
         })
     
 }

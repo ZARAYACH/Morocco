@@ -72,13 +72,34 @@ class user{
      public function addToDb($username,$firstname,$lastname,$email,$password,$admin){
          $sql= "insert into users(username,first_name,last_name,email,pwd,admin) values ('$username','$firstname','$lastname','$email','$password','$admin')";
          $return = connection::actionOnDB($sql);
-            return $return;
+          if($return){
+             $sql = "select id from users where email = '$email' ";
+             $return = connection::selectionFromDb($sql);
+             while($row=$return->fetch()){
+                $userID = $row[0];
+                $sql = "insert into additional_info(user_id) values('$userID')";
+                $return2 = connection::actionOnDB($sql);
+             }
+            return $return2;
+            
+             
+          }
      }
-     public function changeInfo($username,$firstname,$lastname,$email,$userID){
-        $sql= "update users set username = '$username',first_name='$firstname' ,last_name='$lastname' ,email='$email' where id='$userID' ";
+     public function changeInfo($username,$firstname,$lastname,$userID){
+        $sql= "update users set username = '$username',first_name='$firstname' ,last_name='$lastname' where id='$userID' ";
         $return = connection::actionOnDB($sql);
            return $return;
     }
+    public static function editContact($phoneNbr,$email,$userId){
+      $sql ="update users set email = '$email' where id='$userId'";
+      $return = connection::actionOnDB($sql);
+      if($return){
+         $sql ="update additional_info set phoneNbr = '$phoneNbr' where user_id = '$userId'";
+         $return = connection::actionOnDB($sql);
+      }
+      return $return;
+
+   }
     public function deleteAcount($userId){
         $sql= "delete from users where id ='$userId'";
         $return = connection::actionOnDB($sql);
@@ -177,6 +198,7 @@ class user{
          echo("<tr><td colspan='6'>go ahead and get your tikets now</td></tr>");
       }
     }
+
     public static function displaySettings($userName,$firstName,$lastName,$email,$admin){
       echo("
     <div class='settings'>

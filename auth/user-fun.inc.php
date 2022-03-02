@@ -2,7 +2,11 @@
 require_once '../classes/connection.cls.php';
 require_once '../classes/trips.cls.php';
 require_once '../classes/admin.cls.php';
+require_once '../auth/functions.inc.php';
 session_start();
+if($_SESSION["user"]){
+    $user = unserialize($_SESSION["user"]);
+}
 if(isset($_POST['what'])){
     if($_POST['what'] == 'del'){
         $result = false;
@@ -108,6 +112,40 @@ if(isset($_POST['what'])){
                 
         }
 
-    }
+    }else if($_POST["what"]=="editContact"){
+       $phoneNbr =$_POST["phoneNbr"];
+        if(isset($_POST["email"])){
+            $email = $_POST["email"];
+            if(empty($phoneNbr)||empty($email)){
+                echo 'empty input';
+            }else{
+               if(ValidateEmail($email)){
+                   if(ValidateExstingEmail($email)){
+                       if(user::editContact($phoneNbr,$email,$user->getId())){
+                           echo 'editContactSucces';
+                       }else{
+                           echo 'editContactFailed';
+                       }
+                       }else{
+                           echo('emailExists');
+                       }
+                   }else{
+                       echo("invalid email");
+                   }
+               }
+        }else{
+            $userId =$user->getId();
+            $sql ="update additional_info set phoneNbr = '$phoneNbr' where user_id = '$userId'";
+            $return = connection::actionOnDB($sql);
+            if($return){
+                echo'phoneNbrChanged';
+            }else{
+                echo 'phonefailed'
+            }
+        }
 
+
+
+
+     }
 }

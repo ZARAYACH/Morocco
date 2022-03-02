@@ -260,6 +260,25 @@ if(isset($_SESSION["user"])){
       </div>
       <?php
     }else if($_GET["ok"]=="Profile"){
+        $sql = "select * from additional_info where user_id='$userId' ";
+        $return = connection::selectionFromDb($sql);
+        while($row = $return->fetch()){
+            $additional_id = $row[0];
+            $address1 = $row[2];
+            $address2 = $row[3];
+            $phoneNbr = $row[4];
+            $city = $row[5];
+            $postalCode = $row[6];
+            $contrie = $row[7];
+            if(!empty($phoneNbr)){
+                $phoneNbr = explode('/',$phoneNbr);
+                $phone = $phoneNbr[1];
+                $ext = $phoneNbr[0];
+            }else{
+                $ext ='+212';
+                $phone = '';
+            }
+        }
         ?>
  <div class="up">
           <div class="spending">
@@ -270,31 +289,64 @@ if(isset($_SESSION["user"])){
               <div class="spending-container pro">
                 <div class="head">
                 <div class="tiltle">Contact Informations : </div>
-                <i class="fa fa-edit" id="edit" ></i>
+                <i class="fa-solid fa-edit" id="edit" edit="false" ></i>
                 </div>
               <label for="">Your email :</label>
-                    <input type="text" disabled name="" id="email" value=<?php echo($user->getEmail());?>>
+                    <input type="text" disabled name="" id="email"  value=<?php echo($user->getEmail());?>>
                     <label for="">Phone Number :</label>
                     <div class="phone">
                         <div class="select"> 
                             <div class="cou"><img id="cou" src="" alt=""></div>
-                            <input disabled class="input" type="text">
+                            <input id='ext' disabled value=<?php echo($ext) ?> class="input" type="text">
                             <i class="fa-solid fa-angle-down downn"></i>  
                             <div class="container">
                         </div>
                     </div>
-                    <input id='phoneNbr' type="text">
+                    <input disabled value=<?php echo($phone) ?> id='phoneNbr' type="text">
                     </div>
               
 
                 </div>
           </div>
           <div class="photo">
-              <img src="./IMG/undraw_explore_re_8l4v (1).svg" alt="">
+              <img src="./IMG/undraw_personal_site_re_c4bp.svg" alt="">
           </div>
 
           </div>
+          <div class="down">
+          <div class="down-title">Additional Informations</div>
+          
+          <div class="additional">
+              <div class="namee">
+                 <div class="first"> <label for="firstname">First name</label>
+                  <input  id="firstname" type="text"></div>
+                  <div class="last">
+                  <label for="firstname">last name</label>
+                  <input  id="lastname" type="text">
+                  </div>
+              </div>
+              <div class="other">
+                    <label for="phi-address">Phisical address 1</label>
+                    <input id="phi-address" type="text">
+                    <label for="phi-address2">Phisical address 2*</label>
+                    <input id="phi-address2" type="text">
+                    <label for="postal">Code Postal</label>
+                    <input id="postal" type="text">
+                    <div id='nameee' class="namee">
+                        <div class="first">
+                        <label for="city">City</label>
+                    <input id="city" type="text">
+                        </div>
+                        <div class="last">
+                    <label for="country">country</label>
+                    <input id="country" type="text">
+                        </div>
+                    </div>
 
+              </div>
+          </div>
+
+      </div>
 
 
 <?php
@@ -321,7 +373,7 @@ if(isset($_SESSION["user"])){
             <div class="contact-info">
             <label for="">Phone</label>
             <div class="info">
-            <span id="phoneNbr"><span id="country-code">+---</span>  --- - --- - ---</span>
+            <span id="phoneNbre"><span id="country-code">+---</span>  --- - --- - ---</span>
             <i class="fa fa-phone"></i>
             </div>
             </div>
@@ -413,7 +465,7 @@ if(isset($_SESSION["user"])){
 
 
     <!-- <a href="./auth/logout.inc.php">LOGOUT</a> -->
-    
+    <script> let reelEmail='<?php echo($user->getEmail());?>'</script>
     <script src="./JS/jquery-3.1.1.min.js"></script>
     <script src="./JS/user-home.js"></script>
 </body>
