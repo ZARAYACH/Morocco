@@ -43,10 +43,8 @@ if(ValidateUserName($username)===false)
     header ("location:..\sign-up.php?error=userexists");
     exit();
 }
-$firstname = null;
-$lastname = null;
-$user = new user($id,$username,$firstname,$lastname,$email,$pwd,$admin);
-if($user->addToDb($user->getUsername(),$user->getFirstName(),$user->getLastName(),$user->getEmail(),$user->getPwd(),$user->getadmin())){
+$user = new user($id,$username,$email,$pwd,$admin);
+if($user->addToDb($user->getUsername(),$user->getEmail(),$user->getPwd(),$user->getadmin())){
 
     header ("location:..\sign-up.php?indice=signupWithSucces");
     exit();

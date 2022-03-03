@@ -5,6 +5,35 @@ require_once './classes/trips.cls.php';
 if(isset($_SESSION["user"])){
     $user  = unserialize($_SESSION['user']);
     $userId = $user->getId();
+    $sql = "select img from users where id = '$userId'";
+    $return= connection::selectionFromDb($sql);
+    while($row = $return->fetch()){
+        $img = $row[0];
+    }
+    $sql = "select * from additional_info where user_id='$userId' ";
+    $return = connection::selectionFromDb($sql);
+    while($row = $return->fetch()){
+        $additional_id = $row[0];
+        $firstName = $row[2];
+        $lastName = $row[3];
+        $address1 = $row[4];
+        $address2 = $row[5];
+        $phoneNbr = $row[6];
+        $city = $row[7];
+        $postalCode = $row[8];
+        if($postalCode == 0){
+            $postalCode = null;
+        }
+        $contrie = $row[7];
+        if(!empty($phoneNbr)){
+            $phoneNbr = explode('/',$phoneNbr);
+            $phone = $phoneNbr[1];
+            $ext = $phoneNbr[0];
+        }else{
+            $ext ='---';
+            $phone = '';
+        }
+    }
 }else{
     header("location:./log-in.php");
     exit();
@@ -111,7 +140,14 @@ if(isset($_SESSION["user"])){
                   <div class="box">
                       <div class="box-title">average costs $</div>
                       <div class="box-info">
-                          <div class="box-booked"><?php $user->avergeCostOfBooked($userId); ?> </div>
+                          <div class="box-booked"><?php if($user->avergeCostOfBooked($userId)>=1000){
+                              $s = explode(",",number_format($user->avergeCostOfBooked($userId),2));
+                              $o = number_format($s[1],0);
+                              echo($s[0] ."," .$o[0].$o[1]."k"); 
+                          }else{
+                              echo(number_format($user->totalCostOfBooked($userId),2));
+                             }
+                          ?></div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
@@ -135,7 +171,14 @@ if(isset($_SESSION["user"])){
                   <div class="box">
                       <div class="box-title">total costs $</div>
                       <div class="box-info">
-                          <div class="box-booked"><?php $user-> totalCostOfBooked($userId); ?></div>
+                          <div class="box-booked"><?php if($user->totalCostOfBooked($userId)>=1000){
+                              $s = explode(",",number_format($user->totalCostOfBooked($userId),2));
+                              $o = number_format($s[1],0);
+                              echo($s[0] ."," .$o[0].$o[1]."k"); 
+                          }else{
+                              echo(number_format($user->totalCostOfBooked($userId),2));
+                             }
+                          ?></div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
@@ -192,7 +235,14 @@ if(isset($_SESSION["user"])){
                   <div class="box">
                       <div class="box-title">average costs $</div>
                       <div class="box-info">
-                          <div class="box-booked"><?php $user->avergeCostOfBooked($userId); ?> </div>
+                          <div class="box-booked"><?php if($user->avergeCostOfBooked($userId)>=1000){
+                              $s = explode(",",number_format($user->avergeCostOfBooked($userId),2));
+                              $o = number_format($s[1],0);
+                              echo($s[0] ."," .$o[0].$o[1]."k"); 
+                          }else{
+                              echo(number_format($user->avergeCostOfBooked($userId),2));
+                             }
+                          ?> </div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
@@ -216,7 +266,15 @@ if(isset($_SESSION["user"])){
                   <div class="box">
                       <div class="box-title">total costs $</div>
                       <div class="box-info">
-                          <div class="box-booked"><?php $user-> totalCostOfBooked($userId); ?></div>
+                          <div class="box-booked">
+                          <?php if($user->totalCostOfBooked($userId)>=1000){
+                              $s = explode(",",number_format($user->totalCostOfBooked($userId),2));
+                              $o = number_format($s[1],0);
+                              echo($s[0] ."," .$o[0].$o[1]."k"); 
+                          }else{
+                              echo(number_format($user->totalCostOfBooked($userId),2));
+                             }
+                          ?></div>
                           <div class="stat">
                               <div class="stat-chart"><i class="fa-solid fa-arrow-trend-up"></i></div>
                               <div class="stat-percentage">2.4%</div>
@@ -249,6 +307,7 @@ if(isset($_SESSION["user"])){
             <th >price</th>
             <th >Time depart</th>
             <th >type</th>
+            <th>action</th>
         </tr>
     </thead>
     <tbody>
@@ -260,25 +319,6 @@ if(isset($_SESSION["user"])){
       </div>
       <?php
     }else if($_GET["ok"]=="Profile"){
-        $sql = "select * from additional_info where user_id='$userId' ";
-        $return = connection::selectionFromDb($sql);
-        while($row = $return->fetch()){
-            $additional_id = $row[0];
-            $address1 = $row[2];
-            $address2 = $row[3];
-            $phoneNbr = $row[4];
-            $city = $row[5];
-            $postalCode = $row[6];
-            $contrie = $row[7];
-            if(!empty($phoneNbr)){
-                $phoneNbr = explode('/',$phoneNbr);
-                $phone = $phoneNbr[1];
-                $ext = $phoneNbr[0];
-            }else{
-                $ext ='+212';
-                $phone = '';
-            }
-        }
         ?>
  <div class="up">
           <div class="spending">
@@ -297,49 +337,58 @@ if(isset($_SESSION["user"])){
                     <div class="phone">
                         <div class="select"> 
                             <div class="cou"><img id="cou" src="" alt=""></div>
-                            <input id='ext' disabled value=<?php echo($ext) ?> class="input" type="text">
+                            <input id='ext' disabled  class="input" type="text" value=<?php echo($ext) ?>>
                             <i class="fa-solid fa-angle-down downn"></i>  
                             <div class="container">
                         </div>
                     </div>
-                    <input disabled value=<?php echo($phone) ?> id='phoneNbr' type="text">
+                    <input disabled  id='phoneNbr' type="text" value=<?php echo($phone) ?>>
                     </div>
               
 
                 </div>
           </div>
           <div class="photo">
+              
               <img src="./IMG/undraw_personal_site_re_c4bp.svg" alt="">
           </div>
 
           </div>
           <div class="down">
-          <div class="down-title">Additional Informations</div>
+          <div class="down-title">
+              <div class="textt">Additional information</div>
+              <div class="actions">
+              <i class="fa-solid fa-ban" id="cancel"></i>
+              <i class="fa-solid fa-edit" id="editAdd" edit="false" ></i>
+              
+            </div>
+            
+          </div>
           
           <div class="additional">
               <div class="namee">
                  <div class="first"> <label for="firstname">First name</label>
-                  <input  id="firstname" type="text"></div>
+                  <input id="firstName" disabled type="text" value=<?php echo($firstName); ?>></div>
                   <div class="last">
-                  <label for="firstname">last name</label>
-                  <input  id="lastname" type="text">
+                  <label for="lastName">last name</label>
+                  <input  id="lastName" disabled type="text"  value=<?php echo($lastName); ?>>
                   </div>
               </div>
               <div class="other">
-                    <label for="phi-address">Phisical address 1</label>
-                    <input id="phi-address" type="text">
-                    <label for="phi-address2">Phisical address 2*</label>
-                    <input id="phi-address2" type="text">
+                    <label for="phiAddress">Phisical address 1</label>
+                    <input id="phiAddress" disabled type="text" value=<?php echo($address1); ?>>
+                    <label for="phiAddress2">Phisical address 2*</label>
+                    <input  id="phiAddress2" disabled type="text" value=<?php echo($address2); ?>>
                     <label for="postal">Code Postal</label>
-                    <input id="postal" type="text">
+                    <input  id="postal" type="text" disabled value=<?php echo($postalCode); ?>>
                     <div id='nameee' class="namee">
                         <div class="first">
                         <label for="city">City</label>
-                    <input id="city" type="text">
+                    <input  id="city" disabled type="text" value=<?php echo($city) ?>>
                         </div>
                         <div class="last">
                     <label for="country">country</label>
-                    <input id="country" type="text">
+                    <input id="country" disabled type="text"  value=<?php echo($contrie); ?>>
                         </div>
                     </div>
 
@@ -357,7 +406,12 @@ if(isset($_SESSION["user"])){
 
     <div class="placeholder"></div>
     <div class="id-card">
-    <div class="user-img"><img src="./IMG/pic4.png" alt=""></div>
+    <div class="user-img"><div class="imgChange">
+        <form action="" enctype="multipart/form-data">
+        <label for="changee"><i class="fa fa-upload"></i></label>    
+        <input id="changee" name="changee" type="file">
+        </form>
+    </div><img id='userIMG' src="" alt=""></div>
         <div class="user-name">
            <?php echo($user->getUserName());?>  <span>Dear Customer ,Welcome</span>
         </div>
@@ -373,7 +427,7 @@ if(isset($_SESSION["user"])){
             <div class="contact-info">
             <label for="">Phone</label>
             <div class="info">
-            <span id="phoneNbre"><span id="country-code">+---</span>  --- - --- - ---</span>
+            <span id="phoneNbre"><span id="country-code"><?php echo("+".$ext); ?></span><?php echo(" ".$phone); ?></span>
             <i class="fa fa-phone"></i>
             </div>
             </div>
@@ -465,7 +519,9 @@ if(isset($_SESSION["user"])){
 
 
     <!-- <a href="./auth/logout.inc.php">LOGOUT</a> -->
-    <script> let reelEmail='<?php echo($user->getEmail());?>'</script>
+    <script> let reelEmail='<?php echo($user->getEmail());?>'
+     let userImg = '<?php echo($img);?>'
+    </script>
     <script src="./JS/jquery-3.1.1.min.js"></script>
     <script src="./JS/user-home.js"></script>
 </body>

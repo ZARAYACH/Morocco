@@ -15,8 +15,8 @@ class admin extends user{
     {
         return $this->adminLevel;
     }
-    public function __construct($id,$username,$firstname,$lastname,$email,$password,$admin) {
-        parent::__construct($id,$username,$firstname,$lastname,$email,$password,$admin);
+    public function __construct($id,$username,$email,$password,$admin) {
+        parent::__construct($id,$username,$email,$password,$admin);
     }
     
 

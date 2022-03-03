@@ -4,8 +4,13 @@ require_once '../classes/trips.cls.php';
 require_once '../classes/admin.cls.php';
 require_once '../auth/functions.inc.php';
 session_start();
-if($_SESSION["user"]){
+if(isset($_SESSION["user"])){
     $user = unserialize($_SESSION["user"]);
+}else if(isset($_SESSION["admin"])){
+    $admin = unserialize($_SESSION["admin"]);
+}else{
+    header("location:../log-in.php?unlogined");
+    exit();
 }
 if(isset($_POST['what'])){
     if($_POST['what'] == 'del'){
@@ -140,12 +145,95 @@ if(isset($_POST['what'])){
             if($return){
                 echo'phoneNbrChanged';
             }else{
-                echo 'phonefailed'
+                echo 'phonefailed';
             }
         }
+    }else if($_POST["what"] == "editAdditional"){    
+            $firstName = $_POST["firstName"];
+            $lastName= $_POST['lastName'];
+            $address1 =$_POST['address1'];
+            if(isset($_POST["address2"])){
+                $address2 = $_POST["address2"];
+            }else{
+                $address2 = "";
+            }
+            $postal = $_POST["postal"];
+            $city = $_POST['city'];
+            $country =$_POST["country"];
+            $return = $user->editAdditional($firstName,$lastName,$address1,$address2,$postal,$city,$country,$user->getId());
+            if($return){
+                echo("withSucces");
+            }else{
+                echo("editFailed");
+            }
+    
+    }else if($_POST["what"] == "editAdditionalAdmin"){    
+        $firstName = $_POST["firstName"];
+        $lastName= $_POST['lastName'];
+        $address1 =$_POST['address1'];
+        if(isset($_POST["address2"])){
+            $address2 = $_POST["address2"];
+        }else{
+            $address2 = "";
+        }
+        $postal = $_POST["postal"];
+        $city = $_POST['city'];
+        $country =$_POST["country"];
+        $return = $admin->editAdditional($firstName,$lastName,$address1,$address2,$postal,$city,$country,$admin->getId());
+        if($return){
+            echo("withSucces");
+        }else{
+            echo("editFailed");
+        }
 
-
-
-
+}else if($_POST["what"]=="editContactAdmin"){
+    $phoneNbr =$_POST["phoneNbr"];
+     if(isset($_POST["email"])){
+         $email = $_POST["email"];
+         if(empty($phoneNbr)||empty($email)){
+             echo 'empty input';
+         }else{
+            if(ValidateEmail($email)){
+                if(ValidateExstingEmail($email)){
+                    if(admin::editContact($phoneNbr,$email,$admin->getId())){
+                        echo 'editContactSucces';
+                    }else{
+                        echo 'editContactFailed';
+                    }
+                    }else{
+                        echo('emailExists');
+                    }
+                }else{
+                    echo("invalid email");
+                }
+            }
+     }else{
+         $userId =$admin->getId();
+         $sql ="update additional_info set phoneNbr = '$phoneNbr' where user_id = '$userId'";
+         $return = connection::actionOnDB($sql);
+         if($return){
+             echo'phoneNbrChanged';
+         }else{
+             echo 'phonefailed';
+         }
      }
+ }else if($_POST["what"] == "changeImgAdmin"){
+    $file = $_FILES["img"]; 
+    $destination = "../uplaodedImg/".$file["name"];
+    $to = "uplaodedImg/".$file["name"];
+    $temp = $file['tmp_name'];
+    if(move_uploaded_file($temp,$destination)){
+        $sql = "update users set img = '$to'";
+        $return = connection::actionOnDB($sql);
+        if($return){
+            echo("donesuccesfuly");
+        }else{
+            echo("somethingwentwrong");
+        }
+    }else{
+        echo("somethingwentwrongse");
+
+    }
+ }
 }
+        

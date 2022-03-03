@@ -25,8 +25,8 @@ if(identifiedUser($email,$pwd)==false){
     $sql = "select * from users where email = '$email'";
     $return = connection::selectionFromDb($sql);
     while($row = $return->fetch()){
-         if(!$row[6]){
-            $user = new user($row[0],$row[1],$row[2],$row[3],$row[4],$row[5],$row[6]);
+         if(!$row[4]){
+            $user = new user($row[0],$row[1],$row[2],$row[3],$row[4]);
             session_start();
             setcookie("logined",true, time() + (86400 * 30), "/"); 
             $_SESSION['user'] = serialize($user);
@@ -48,8 +48,8 @@ if(identifiedUser($email,$pwd)==false){
             }
            
         }
-        else if($row[6]){
-            $admin = new admin($row[0],$row[1],$row[2],$row[3],$row[4],$row[5],$row[6]);
+        else if($row[4]){
+            $admin = new admin($row[0],$row[1],$row[2],$row[3],$row[4]);
             session_start();
             $_SESSION['admin'] = serialize($admin);
             header ("location:../admin-home.php");

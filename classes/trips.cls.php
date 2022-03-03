@@ -110,7 +110,8 @@ class trips{
                <td class='tikets-left'>$price</td>
                <td class='travel-cost'>$timeDepart</td>
                <td class='type'><i class='fa-solid fa-plane'></i></td>
-           </tr>");
+                <td><div class='over'><button tripId='$id' class='bookk'>book now</button></div></td>
+               </tr>");
             }
            
          }
@@ -224,6 +225,8 @@ class trips{
                <td class='tikets-left'>$price</td>
                <td class='travel-cost'>$timeDepart</td>
                <td class='type'><i class='fa-solid fa-plane'></i></td>
+               <td><div class='over'><button tripId='$id' class='bookk'>book now</button></div></td>
+
            </tr>");
             }
            
@@ -260,6 +263,8 @@ class trips{
                <td class='tikets-left'>$price</td>
                <td class='travel-cost'>$timeDepart</td>
                <td class='type'><i class='fa-solid fa-plane'></i></td>
+               <td><div class='over'><button tripId='$id' class='bookk'>book now</button></div></td>
+
            </tr>");
             }
            
@@ -297,6 +302,8 @@ class trips{
                <td class='tikets-left'>$price</td>
                <td class='travel-cost'>$timeDepart</td>
                <td class='type'><i class='fa-solid fa-plane'></i></td>
+               <td><div class='over'><button tripId='$id' class='bookk'>book now</button></div></td>
+
            </tr>");
             }
            

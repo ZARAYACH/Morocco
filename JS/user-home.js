@@ -1,3 +1,10 @@
+let img = document.querySelector("#userIMG");
+if(userImg != ""){
+    img.src = userImg;
+}else{
+    img.src = "IMG/download.jpg"
+}
+
 let navBtn = document.querySelectorAll(".click");
 let wher = window.location.search;
 if(!wher.includes("?ok=")){
@@ -74,6 +81,35 @@ btnAll.addEventListener('click',()=>{
     })
 })
 })
+var targetNode = document.querySelector(".down");
+var config = { attributes: true,
+     childList: true,
+     characterData: true,
+     subtree: true
+     };
+var callback = function() {
+    let btnBook = document.querySelectorAll(".bookk");
+    for (let i = 0; i < btnBook.length; i++) {
+        btnBook[i].addEventListener("click",(e)=>{
+            let tripId = e.currentTarget.getAttribute("tripId");
+            window.location = `auth/logined.inc.php?trip=${tripId}`;
+        })
+        
+    }
+};
+var observer = new MutationObserver(callback);
+observer.observe(targetNode, config);
+
+let btnBook = document.querySelectorAll(".bookk");
+for (let i = 0; i < btnBook.length; i++) {
+    btnBook[i].addEventListener("click",(e)=>{
+        let tripId = e.currentTarget.getAttribute("tripId");
+        window.location = `auth/logined.inc.php?trip=${tripId}`;
+    })
+    
+}
+
+
 
 }else if(wher.includes("?ok=Profile")){
     navBtn[1].classList.add("active");
@@ -170,7 +206,13 @@ btnAll.addEventListener('click',()=>{
                                 window.location = "./auth/logout.inc.php"
 
                             }else if(res=="phoneNbrChanged"){
-                                
+                                email.setAttribute("disabled",true);
+                                phone.setAttribute("disabled",true);
+                                edit.classList = "fa-solid fa-edit";
+                                box.style.animation = "rotate .9s"
+                                setTimeout(() => {
+                                    box.style.animation = "none"
+                                }, 1500);
                             }
                     })
                     }else{
@@ -190,6 +232,68 @@ btnAll.addEventListener('click',()=>{
             }, 1500);
             }
             
+        })
+
+        let editAdd = document.querySelector("#editAdd");
+        editAdd.addEventListener("click",()=>{
+          let editbol = editAdd.getAttribute("edit");
+          let firstName= document.querySelector("#firstName");
+            let lastName = document.querySelector("#lastName");
+            let address2 = document.querySelector("#phiAddress2");
+            let address1 = document.querySelector("#phiAddress");
+            let postal = document.querySelector("#postal");
+            let city = document.querySelector("#city");
+            let country = document.querySelector("#country");
+          if(editbol == "true"){
+            $(function(){   
+                let fd = new FormData();
+                if(firstName.value != "" && lastName.value != "" && address1.value != "" && postal.value != "" && city.value != "" && country.value != "" ){
+                    fd.append("what","editAdditional");
+                    fd.append("firstName",firstName.value);
+                    fd.append("lastName",lastName.value);
+                    fd.append("address1",address1.value);
+                    fd.append("postal",postal.value);
+                    fd.append("city",city.value);
+                    fd.append("country",country.value);
+                }else{
+                    firstName.style.backgroundColor ="red"
+                }  
+                if(address2.value!= ""){
+                    fd.append("address2",address2.value);
+                }
+                $.ajax({
+                    type: 'POST',
+                    url:'auth/user-fun.inc.php',
+                    data : fd,
+                    contentType: false,
+                    processData: false
+                  }).done(function (res){
+                   console.log(res);
+                 if(res =="withSucces"){
+                    editAdd.setAttribute('edit',"false");
+                    editAdd.classList = "fa-solid fa-edit";
+                    firstName.setAttribute("disabled","true");
+                    lastName.setAttribute("disabled","true");
+                    address1.setAttribute("disabled","true");
+                    address2.setAttribute("disabled","true");
+                    postal.setAttribute("disabled","true");
+                    city.setAttribute("disabled","true");
+                    country.setAttribute("disabled","true");
+                 }
+            })
+        })
+
+          }else{
+              editAdd.setAttribute('edit',"true");
+              editAdd.classList = "fa-solid fa-check";
+              firstName.removeAttribute("disabled");
+              lastName.removeAttribute("disabled");
+              address1.removeAttribute("disabled");
+              address2.removeAttribute("disabled");
+              postal.removeAttribute("disabled");
+              city.removeAttribute("disabled");
+              country.removeAttribute("disabled");
+          }
         })
     
 }

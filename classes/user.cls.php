@@ -5,8 +5,6 @@ require_once 'connection.cls.php';
 class user{
     private $id;
     private $username;
-    private $firstname;
-    private $lastname;
     private $email;
     private $password;
     private $admin;
@@ -26,20 +24,7 @@ class user{
         return $this->username;
      }
 
-     public function setFirstName($firstname){
-        $this->firstname = $firstname;
-     }
-     public function getFirstName(){
-        return $this->firstname;
-     }
-
-     public function setLastName($lastname){
-        $this->lastname = $lastname;
-     }
-     public function getLastName(){
-        return $this->lastname;
-     }
-     public function setEmail($email){
+    public function setEmail($email){
         $this->email = $email;
      }
      public function getEmail(){
@@ -59,18 +44,16 @@ class user{
         return $this->admin;
      }
 
-     public function __construct($id,$username,$firstname,$lastname,$email,$password,$admin)
+     public function __construct($id,$username,$email,$password,$admin)
      {
          $this->id = $id;
          $this->username = $username;
-         $this->firstname = $firstname;
-         $this->lastname = $lastname;
          $this->email = $email;
          $this->setPwd($password);
          $this->admin = $admin;
      }
-     public function addToDb($username,$firstname,$lastname,$email,$password,$admin){
-         $sql= "insert into users(username,first_name,last_name,email,pwd,admin) values ('$username','$firstname','$lastname','$email','$password','$admin')";
+     public function addToDb($username,$email,$password,$admin){
+         $sql= "insert into users(username,email,pwd,admin) values ('$username','$email','$password','$admin')";
          $return = connection::actionOnDB($sql);
           if($return){
              $sql = "select id from users where email = '$email' ";
@@ -85,8 +68,8 @@ class user{
              
           }
      }
-     public function changeInfo($username,$firstname,$lastname,$userID){
-        $sql= "update users set username = '$username',first_name='$firstname' ,last_name='$lastname' where id='$userID' ";
+     public function changeInfo($username,$userID){
+        $sql= "update users set username = '$username' where id='$userID' ";
         $return = connection::actionOnDB($sql);
            return $return;
     }
@@ -99,6 +82,11 @@ class user{
       }
       return $return;
 
+   }
+   public function editAdditional($firstName,$lastName,$address1,$address2,$postal,$city,$country,$userId){
+      $sql =  "update additional_info set first_name = '$firstName' , last_name = '$lastName' , address1='$address1',address2 = '$address2', codePostal = '$postal', city ='$city', country ='$country'  where user_id = '$userId'";
+      $return = connection::actionOnDB($sql);
+      return $return;
    }
     public function deleteAcount($userId){
         $sql= "delete from users where id ='$userId'";
@@ -121,6 +109,7 @@ class user{
       return $result;
 
     }
+    
     public function NbrOfBooked($userId)
     {
        $sql = "select count(*) from booked where id_user = '$userId'";
@@ -137,7 +126,7 @@ class user{
       $return = connection::selectionFromDb($sql);
       if($return){
         while($row = $return->fetch()){
-           echo($row[0]);
+           return $row[0];
         }
    }
   }
@@ -147,7 +136,7 @@ class user{
      $return = connection::selectionFromDb($sql);
      if($return){
        while($row = $return->fetch()){
-          echo($row[0]);
+          return $row[0];
        }
   }
  }

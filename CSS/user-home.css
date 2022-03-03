@@ -91,6 +91,11 @@ ul{
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
     position: relative;
+    cursor: pointer;
+    transition: .3s;
+}
+ul li:hover{
+    background-color: rgba(255, 255, 255, 0.116);
 
 }
 .active{
@@ -151,6 +156,22 @@ ul li a i{
 }
 ul li a span{
     width: 70%;
+}
+.over button{
+    BORDER: NONE;
+    OUTLINE: none;
+    padding: 0.5rem 0.5rem;
+    background: var(--orange);
+    color: white;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: .3s;
+}
+.over button:hover{
+    opacity: .7;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
 }
 .main{
     width: 66%;
@@ -351,6 +372,30 @@ ul li a span{
     width: 100%;
     font-size: 1rem;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.actions{
+    display: flex;
+    width: 5rem;
+    align-items: center;
+    justify-content:flex-start;
+    font-size: 1.3rem;
+}
+.actions i{
+    padding: .5rem;
+    background-color: white;
+    opacity: .5;
+    cursor: pointer;
+    margin-right: .5rem;
+    transition: .3s;
+}
+.actions i:hover{
+    color: white;
+    background-color: #4d5761;
+    opacity: 1;
+    border-radius: .3rem ;
 }
 .search-bar{
     margin-top: 1rem;
@@ -407,7 +452,7 @@ ul li a span{
     text-align: center;
 }
 .table thead tr th:nth-child(1){
-    width: 50%;
+    width: 30%;
     padding-left: .5rem;
     text-align: left;
 }
@@ -495,7 +540,28 @@ option{
     border-radius: 50%;
     outline-offset: 8px;
     outline: 4px solid var(--orange);
-    
+    position: relative;
+    OVERFLOW: CLIP;
+}
+.imgChange{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.473);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: .3s;
+}
+.imgChange label{
+    cursor: pointer;
+    color: #f9faff;
+}
+#changee{
+    visibility: hidden;
+    display: none;
 }
 .user-img img{
     max-width: 100%;
