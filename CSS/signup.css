@@ -162,3 +162,11 @@ body{
     border: 1px solid var(--orange);
     color: white;
 }
+.succes{
+    background-color: #0080003d;
+    border: 2px solid rgba(0, 128, 0, 0.699);
+}
+.failed{
+    background-color: #ff000057;
+    border: 2px solid rgb(255 0 0 / 35%);
+}

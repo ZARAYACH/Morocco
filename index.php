@@ -362,17 +362,17 @@
             <img src="IMG/contact-img.svg" alt="">
         </div>
 
-        <form action="">
+        <form action="auth/sendAmessage.inc.php" method="POST">
             <div class="inputBox">
-                <input type="text" placeholder="name">
-                <input type="email" placeholder="email">
+                <input type="text" name="name" placeholder="name">
+                <input type="email" name="email" placeholder="email">
             </div>
             <div class="inputBox">
-                <input type="number" placeholder="number">
-                <input type="text" placeholder="subject">
+                <input type="text" name="type" placeholder="type">
+                <input type="text" name="subject" placeholder="subject">
             </div>
-            <textarea placeholder="message" name="" id="" cols="30" rows="10"></textarea>
-            <input type="submit" class="btn" value="send message">
+            <textarea name="message" placeholder="message" name="" id="" cols="30" rows="10"></textarea>
+            <input type="submit" name="submit" class="btn" value="send message">
         </form>
 
     </div>

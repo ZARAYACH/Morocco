@@ -166,5 +166,35 @@ class admin extends user{
          echo("<tr><td colspan='6'>go ahead and get your tikets now</td></tr>");
       }
     }
-    
+
+    public static function displayAllContact()
+    {
+        $sql ="select * from contact";
+        $return = connection::selectionFromDb($sql);
+        while($row = $return->fetch()){
+            $id =$row[0] ;
+            $name = $row[1];
+            $email = $row[2];
+            $type = $row[3];
+            $subject = $row[4];
+            $message= $row[5];
+            $time = $row[6];
+               echo("<tr>
+               <td class='name'>
+                    <div class='travel-name'>
+                       $name
+                       <span>$email</span>
+                   </div>
+   
+               </td>
+               <td class='qte'>$type</td>
+               <td class='tikets-left'>$subject</td>
+               <td class='travel-cost'>$message</td>
+               <td class='type'>$time</td>
+                <td><div class='over'><button tripId='$id' class='bookk'>Reply</button></div></td>
+               </tr>");
+            }
+           
+        }
 }
+    

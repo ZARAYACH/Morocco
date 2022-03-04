@@ -287,8 +287,9 @@ btnAll.addEventListener('click',()=>{
           }
         })
 
+}else  if(wher.includes("?ok=contact")){
+    navBtn[4].classList.add("active");
 }
-
 
 for (let i = 0; i < navBtn.length; i++) {
     navBtn[i].addEventListener('click',function(e){
@@ -371,6 +372,8 @@ for (let i = 0; i < navBtn.length; i++) {
         window.location = "./admin-home.php?ok=controle"
        }else if(location == "profile"){
         window.location = "./admin-home.php?ok=Profile"
+       }if(location == "contact"){
+        window.location = "./admin-home.php?ok=contact"
        }
     })
     

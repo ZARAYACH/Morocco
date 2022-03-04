@@ -33,16 +33,16 @@ if(isset($_GET['trip'])){
             <div class="comment">log in now and explore Morocco With Us </div>
             
             <div class="form">
-                <form action='<?php echo($action)?>' method="post">
+                 <form >
                 <div class="input">
                 <i class="material-icons">mail_outline</i>
-               <input type="text" name="email" placeholder="Email">
+               <input type="text" id='email' name="email" placeholder="Email">
                 </div>
                 <div class="input">
                    <i class="material-icons">lock_outline</i>
-                   <input type="password" name="password" placeholder="password">
+                   <input type="password" id='pass' name="password" placeholder="password">
                 </div>
-                <input type="submit" name="submit" value="Log In">
+                <input type="button"  id="submit" name="submit" value="Log In">
                 </form>
             </div>
         </div>
@@ -61,6 +61,8 @@ if(isset($_GET['trip'])){
     </div>
           
 <script src=".\JS\jquery-3.1.1.min.js" ></script>
+<script src="./JS/login.js"></script>
+
 </body>
 
 </html>

@@ -90,6 +90,14 @@ require_once './classes/trips.cls.php';
                     <span>Search</span>
                 </a>
             </li>
+            <li location="contact" class="click ">
+                <b></b>
+                <b></b>
+                <a>
+                <i class="fa-solid fa-address-book"></i>
+                <span>Contact</span>
+                </a>
+            </li>
             <li location="settings" class="click">
             <b></b>
                 <b></b>
@@ -314,7 +322,7 @@ require_once './classes/trips.cls.php';
         </tr>
     </thead>
     <tbody>
-       <?php trips::displayAllTripsDashbaord(); ?> 
+       <?php trips::displayAllTripsDashbaorddd(); ?> 
         
 
     </tbody>
@@ -481,8 +489,35 @@ require_once './classes/trips.cls.php';
           </div>
 
       </div>
+     <?php }else if($_GET["ok"]=="contact"){
+        ?>
+         <div class="up" style="justify-content:flex-start;">
+          <div class="spending">
+              <div class="spending-title">
+                  Contact
+              </div>
+              <div class="dir"><span>Home</span><span>Contact</span></div>
+            </div>
+        </div>
+          <div class="down">
+          <div class="down-title">users messages</div>
+          <table class="table contaact">
+          <thead>
+        <tr>
+            <th >name & email</th>
+            <th >type</th>
+            <th >subject</th>
+            <th >message</th>
+            <th >time Aded</th>
+        </tr>
+    </thead>
+    <tbody>
+       <?php admin::displayAllContact(); ?> 
+        
 
-
+    </tbody>
+          </table>
+      </div>
 <?php
     }
 } ?>

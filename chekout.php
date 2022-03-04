@@ -82,20 +82,20 @@ if(isset($_SESSION['user'])){
                 </div>
                 <div class="form">
                     <label for="holder-name">card holder name</label>
-                    <input id="holder-name" type="text" placeholder="Tom Hanks">
+                    <input class='p' id="holder-name" type="text" placeholder="Tom Hanks">
                     <label for="card-number">Card Number</label>
-                    <input id="card-number" type="text" inputmode="numeric" maxlength="16" placeholder="1111 2222 3333 4444">
+                    <input class='p' id="card-number" type="text" inputmode="numeric" maxlength="16" placeholder="1111 2222 3333 4444">
                     <div class="para">
                         <div class="para_1">
                         <label for="experation-date">Experation Date</label>
-                        <div class="exp-wrapper">
-                                <input autocomplete="off" class="exp" id="month" maxlength="2" pattern="[0-9]*" inputmode="numerical" placeholder="MM" type="text" data-pattern-validate />
+                        <div class="exp-wrapper p">
+                                <input  autocomplete="off" class="exp" id="month" maxlength="2" pattern="[0-9]*" inputmode="numerical" placeholder="MM" type="text" data-pattern-validate />
                                 <input autocomplete="off" class="exp" id="year" maxlength="2" pattern="[0-9]*" inputmode="numerical" placeholder="YY" type="text" data-pattern-validate />
                         </div>
                         </div>
                         <div class="para_2">
                         <label for="cvv">cvv</label>
-                            <input id="cvv" maxlength="3" inputmode="numeric" type="text" pattern="[0-9]{3}" placeholder="123" >
+                            <input class='p' id="cvv" maxlength="3" inputmode="numeric" type="text" pattern="[0-9]{3}" placeholder="123" >
                         </div>
                     </div>
                 </div>

@@ -152,6 +152,41 @@ class trips{
            
          }
     }
+    public static function displayAllTripsDashbaorddd()
+    {
+        $sql ="select trip_id,destination,description,price,max_persone,img,date(time_depart) from trips";
+        $return = connection::selectionFromDb($sql);
+        while($row = $return->fetch()){
+            $id =$row[0] ;
+            $to = $row[1];
+            $desc = $row[2];
+            $price = $row[3];
+            $maxPer = $row[4];
+            $img= $row[5];
+            $timeDepart = $row[6];
+            $sql = "select sum(qte) from booked where id_trip = '$id'";
+            $return2 = connection::selectionFromDb($sql);
+            while($row2 = $return2->fetch()){
+               $sumBooked = $row2[0];
+               $left  = $maxPer - $sumBooked;
+               echo("<tr>
+               <td class='name'>
+                   <div class='image'><img src='$img' alt=''></div>
+                   <div class='travel-name'>
+                       $to
+                       <span>$desc</span>
+                   </div>
+   
+               </td>
+               <td class='qte'>$left</td>
+               <td class='tikets-left'>$price</td>
+               <td class='travel-cost'>$timeDepart</td>
+               <td class='type'><i class='fa-solid fa-plane'></i></td>
+               </tr>");
+            }
+           
+         }
+        }
 
     public static function displayCart($userId)
     {

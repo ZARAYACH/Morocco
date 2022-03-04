@@ -218,12 +218,31 @@ if(isset($_POST['what'])){
          }
      }
  }else if($_POST["what"] == "changeImgAdmin"){
+    $adminId = $admin->getId();
     $file = $_FILES["img"]; 
     $destination = "../uplaodedImg/".$file["name"];
     $to = "uplaodedImg/".$file["name"];
     $temp = $file['tmp_name'];
     if(move_uploaded_file($temp,$destination)){
-        $sql = "update users set img = '$to'";
+        $sql = "update users set img = '$to' where id = '$adminId'";
+        $return = connection::actionOnDB($sql);
+        if($return){
+            echo("donesuccesfuly");
+        }else{
+            echo("somethingwentwrong");
+        }
+    }else{
+        echo("somethingwentwrongse");
+
+    }
+ }else if($_POST["what"] == "changeImg"){
+    $userId = $user->getId();
+    $file = $_FILES["img"]; 
+    $destination = "../uplaodedImg/".$file["name"];
+    $to = "uplaodedImg/".$file["name"];
+    $temp = $file['tmp_name'];
+    if(move_uploaded_file($temp,$destination)){
+        $sql = "update users set img = '$to' where id = '$userId'";
         $return = connection::actionOnDB($sql);
         if($return){
             echo("donesuccesfuly");

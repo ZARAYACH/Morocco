@@ -24,7 +24,7 @@ if(isset($_SESSION["user"])){
         if($postalCode == 0){
             $postalCode = null;
         }
-        $contrie = $row[7];
+        $contrie = $row[9];
         if(!empty($phoneNbr)){
             $phoneNbr = explode('/',$phoneNbr);
             $phone = $phoneNbr[1];

@@ -36,30 +36,31 @@
             <div class="comment">sign up now and live the full experience</div>
             
             <div class="form">
-                <form action="./auth/signup.inc.php" method="post">
+                <form method="post">
                    <div class="input">
                    <i class="material-icons">person_outline</i>
-                   <input type="text" name="username" placeholder="UserName">
+                   <input type="text" id='username' name="username" placeholder="UserName">
                 </div>
                 <div class="input">
 
                 <i class="material-icons">mail_outline</i>
-               <input type="text" name="email" placeholder="Email">
+               <input type="text" name="email" id="email" placeholder="Email">
                 </div>
                 <div class="input">
                    <i class="material-icons">lock_outline</i>
-                   <input type="password" name="password" placeholder="password">
+                   <input id="pass" type="password" name="password" placeholder="password">
                 </div>
                 <div class="input">
                 <i class="material-icons">lock_outline</i>
-                   <input type="password" name="password-repeat" placeholder="repeat password">
+                   <input type="password" id="pass-repeat" name="password-repeat" placeholder="repeat password">
                 </div>
-                <input type="submit" name="submit" value="sign up">
+                <input type="button" id="submit" name="submit" value="sign up">
                 </form>
             </div>
         </div>
     </div>
 <script src=".\JS\jquery-3.1.1.min.js" ></script>
+<script src="./JS/signup.js"></script>
 </body>
 
 </html>

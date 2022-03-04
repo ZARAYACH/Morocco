@@ -165,7 +165,9 @@ body{
     color: white;
     margin-top: 2rem;
     cursor: pointer;
+    text-align: center;
     transition: .3s;
+    outline: none;
 }
 .form form input[name = 'submit']:hover{
     background-color: white;

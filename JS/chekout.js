@@ -127,8 +127,18 @@ console.log(...formData);
         if(res=="done"){
           window.location = "./purchaseDone.php?ok=purchaseWithSucecc";
         }else{
+          if(res =='impty cards'){
+              document.querySelector(".click").style.color = '#e10000c2';
+          }else if(res =='impty input'){
+            let inputs = document.querySelectorAll(".p");
+            console.log(inputs)
+            inputs.forEach((el)=>{
+              el.style.backgroundColor = '#ff000063';
+              el.style.border ='2px solid #ff00007d'
+            })
+        } 
             console.log(res);
-          // window.location = "./index.php";
+          
         }
          
      })

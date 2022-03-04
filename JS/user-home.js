@@ -344,5 +344,39 @@ for (let i = 0; i < navBtn.length; i++) {
     })
     
 }
+let change = document.querySelector(".user-img");
+change.addEventListener('mouseenter' ,()=>{
+    let upload = document.querySelector(".imgChange");
+    upload.style.opacity = "1";
+})
+change.addEventListener('mouseleave' ,()=>{
+    let upload = document.querySelector(".imgChange");
+    upload.style.opacity = "0";
+})
 
+document.querySelector("#changee").onchange = ()=>{
+    let file = document.querySelector("#changee").files;
+    if(file[0].type == "image/png" || file[0].type == "image/jpg" || file[0].type == "image/jpeg" ){
+        $(function(){
+            let fd = new FormData();
+            fd.append("what","changeImg");
+            fd.append("img",file[0]);
+            $.ajax({
+                type: 'POST',
+                url:'auth/user-fun.inc.php',
+                data : fd,
+                contentType: false,
+                processData: false
+            }).done(function(res){
+                console.log(res);
+                if(res == "donesuccesfuly"){
+                    let img = document.querySelector("#userIMG");
+                    img.src = "uplaodedImg/"+file[0].name;
+                }
+            })
+        })
+    }else{
+        console.log('it not an image');
+    }
+};
 
