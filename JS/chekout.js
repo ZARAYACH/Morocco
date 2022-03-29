@@ -1,4 +1,4 @@
-let backBtn  = document.querySelector(".click");
+ let backBtn  = document.querySelector(".click");
 backBtn.addEventListener('click',()=>{
   window.location = "./index.php";
 })
